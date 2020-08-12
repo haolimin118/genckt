@@ -14,6 +14,9 @@ CktContext::CktContext(CktType type, int scale)
         case LADDERRC:
             m_ckt = new LadderRC(scale, "RC ladder");
             break;
+        case LADDERRLC:
+            m_ckt = new LadderRLC(scale, "RLC ladder");
+            break;
         default:;
     }
 
