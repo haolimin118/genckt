@@ -6,7 +6,7 @@
  * @author   : Hao Limin
  * @date     : 2020.08.12
  * @desp     : RC ladder circuit.
- * @ref      : Doc/LadderRC.png
+ * @ref      : Doc/Ladder/LadderRC.png
  */
 
 #include "Circuit/CktBase.h"

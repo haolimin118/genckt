@@ -68,6 +68,7 @@ int LadderRC::GenerateCmd()
     cout << TRACE_LINE << endl;
 #endif
     m_ss << ".OP" << "\n";
+    m_ss << ".PRINT V(" << STR(m_scale+1) << ")" << "\n";
     m_ss << ".ends" << "\n";
 
     return OKAY;

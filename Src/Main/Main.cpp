@@ -37,6 +37,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
     string flag_type = FLAGS_t;
     if (flag_type.compare("ladderrc") == 0) {
         cktType = LADDERRC;
+    } else if (flag_type.compare("ladderrlc") == 0) {
+        cktType = LADDERRLC;
     } else {
         cout << "[ERROR] Circuit type is unknown" << endl;
         EXIT;
@@ -62,7 +64,8 @@ static void InitProjectInfo()
                             "-s        set circuit scale.\n"
                             "-m        set circuit type.\n"
                             "Circuit Type(s):\n"
-                            "ladderrc");
+                            "ladderrc\n"
+                            "ladderrlc");
 }
 
 
