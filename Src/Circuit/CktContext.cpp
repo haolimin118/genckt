@@ -17,6 +17,12 @@ CktContext::CktContext(CktType type, int scale)
         case LADDERRLC:
             m_ckt = new LadderRLC(scale, "RLC ladder");
             break;
+        case COUPLEDTREERC:
+            m_ckt = new CoupledTreeRC(scale, "Coupled RC tree");
+            break;
+        case CLOCKTREER:
+            m_ckt = new ClockTreeR(scale, "Clock R tree");
+            break;
         default:;
     }
 

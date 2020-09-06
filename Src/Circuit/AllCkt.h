@@ -3,5 +3,7 @@
 
 #include "Circuit/Ladder/LadderRC.h"
 #include "Circuit/Ladder/LadderRLC.h"
+#include "Circuit/Tree/CoupledTreeRC.h"
+#include "Circuit/Tree/ClockTreeR.h"
 
 #endif // GENCKT_CIRCUIT_ALLCKT_H

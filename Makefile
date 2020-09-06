@@ -8,7 +8,8 @@ INC_PATH = -I$(SRC_DIR) \
            -I$(SRC_DIR)/Define \
 		   -I$(SRC_DIR)/Utilities \
 		   -I$(SRC_DIR)/Circuit \
-		   -I$(SRC_DIR)/Circuit/Ladder
+		   -I$(SRC_DIR)/Circuit/Ladder \
+		   -I$(SRC_DIR)/Circuit/Tree
 
 LIB_PATH = 
 
@@ -19,7 +20,9 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/CktBase.cpp \
 	   $(SRC_DIR)/Circuit/CktContext.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRC.cpp \
-	   $(SRC_DIR)/Circuit/Ladder/LadderRLC.cpp
+	   $(SRC_DIR)/Circuit/Ladder/LadderRLC.cpp \
+	   $(SRC_DIR)/Circuit/Tree/CoupledTreeRC.cpp \
+	   $(SRC_DIR)/Circuit/Tree/ClockTreeR.cpp
 
 OBJ_DIR = build
 

@@ -33,7 +33,7 @@ int LadderRC::Generate(ofstream &fout)
     if (error)
         return ERROR;
     
-    fout << m_title << "\n";
+    fout << "*" << m_title << "\n\n";
     fout << m_ss.str();
 
     return OKAY;
@@ -50,7 +50,7 @@ int LadderRC::GenerateCkt()
 
     string r, c;
 
-    for (int i = 0; i <= m_scale; ++ i) {
+    for (int i = 1; i <= m_scale; ++ i) {
         r = "R" + STR(i) + " " + STR(i) + " " + STR(i+1) + " " + "100";
         c = "C" + STR(i) + " " + STR(i+1) + " " + "0" + " " + "1p";
         m_ss << r << "\n";
