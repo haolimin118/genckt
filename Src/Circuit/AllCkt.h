@@ -6,5 +6,7 @@
 #include "Circuit/Tree/CoupledTreeRC.h"
 #include "Circuit/Tree/ClockTreeR.h"
 #include "Circuit/Tree/ClockTreeRC.h"
+#include "Circuit/Tree/ClockTreeRRand.h"
+#include "Circuit/Tree/ClockTreeRCRand.h"
 
 #endif // GENCKT_CIRCUIT_ALLCKT_H

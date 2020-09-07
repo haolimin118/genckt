@@ -26,6 +26,12 @@ CktContext::CktContext(CktType type, int scale)
         case CLOCKTREERC:
             m_ckt = new ClockTreeRC(scale, "Clock RC tree");
             break;
+        case CLOCKTREERRAND:
+            m_ckt = new ClockTreeRRand(scale, "Clock R tree (random fanout)");
+            break;
+        case CLOCKTREERCRAND:
+            m_ckt = new ClockTreeRCRand(scale, "Clock RC tree (random fanout)");
+            break;
         default:;
     }
 

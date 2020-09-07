@@ -17,13 +17,16 @@ LIBS = -lgflags
 
 SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Utilities/MyString.cpp \
+	   $(SRC_DIR)/Utilities/Utils.cpp \
 	   $(SRC_DIR)/Circuit/CktBase.cpp \
 	   $(SRC_DIR)/Circuit/CktContext.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRC.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRLC.cpp \
 	   $(SRC_DIR)/Circuit/Tree/CoupledTreeRC.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeR.cpp \
-	   $(SRC_DIR)/Circuit/Tree/ClockTreeRC.cpp
+	   $(SRC_DIR)/Circuit/Tree/ClockTreeRC.cpp \
+	   $(SRC_DIR)/Circuit/Tree/ClockTreeRRand.cpp \
+	   $(SRC_DIR)/Circuit/Tree/ClockTreeRCRand.cpp
 
 OBJ_DIR = build
 

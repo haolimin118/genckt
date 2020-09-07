@@ -45,6 +45,10 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = CLOCKTREER;
     } else if (flag_type.compare("clocktreerc") == 0) {
         cktType = CLOCKTREERC;
+    } else if (flag_type.compare("clocktreerrand") == 0) {
+        cktType = CLOCKTREERRAND;
+    } else if (flag_type.compare("clocktreercrand") == 0) {
+        cktType = CLOCKTREERCRAND;
     } else {
         cout << "[ERROR] Circuit type is unknown" << endl;
         EXIT;
@@ -74,7 +78,9 @@ static void InitProjectInfo()
                             "ladderrlc\n"
                             "coupledtreerc\n"
                             "clocktreer\n"
-                            "clocktreerc");
+                            "clocktreerc\n"
+                            "clocktreerrand\n"
+                            "clocktreercrand");
 }
 
 

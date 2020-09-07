@@ -2,7 +2,7 @@
 #define GENCKT_CIRCUIT_TREE_CLOCKTREER_H
 
 /*
- * @filename : ClockTree.h
+ * @filename : ClockTreeR.h
  * @author   : Hao Limin
  * @date     : 2020.09.05
  * @desp     : Clock Tree, only R.
