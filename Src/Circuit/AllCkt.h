@@ -5,5 +5,6 @@
 #include "Circuit/Ladder/LadderRLC.h"
 #include "Circuit/Tree/CoupledTreeRC.h"
 #include "Circuit/Tree/ClockTreeR.h"
+#include "Circuit/Tree/ClockTreeRC.h"
 
 #endif // GENCKT_CIRCUIT_ALLCKT_H

@@ -23,6 +23,9 @@ CktContext::CktContext(CktType type, int scale)
         case CLOCKTREER:
             m_ckt = new ClockTreeR(scale, "Clock R tree");
             break;
+        case CLOCKTREERC:
+            m_ckt = new ClockTreeRC(scale, "Clock RC tree");
+            break;
         default:;
     }
 

@@ -22,7 +22,8 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRC.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRLC.cpp \
 	   $(SRC_DIR)/Circuit/Tree/CoupledTreeRC.cpp \
-	   $(SRC_DIR)/Circuit/Tree/ClockTreeR.cpp
+	   $(SRC_DIR)/Circuit/Tree/ClockTreeR.cpp \
+	   $(SRC_DIR)/Circuit/Tree/ClockTreeRC.cpp
 
 OBJ_DIR = build
 
