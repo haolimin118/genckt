@@ -13,7 +13,10 @@
 
 class CktBase;
 
-enum CktType { LADDERRC = 0, LADDERRLC };
+enum CktType { LADDERRC = 0, LADDERRLC,
+               COUPLEDTREERC, /* COUPLEDTREERLC */
+               CLOCKTREER, CLOCKTREERC,
+               CLOCKTREERRAND, CLOCKTREERCRAND };
 
 
 class CktContext

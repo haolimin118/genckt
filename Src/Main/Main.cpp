@@ -39,6 +39,16 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = LADDERRC;
     } else if (flag_type.compare("ladderrlc") == 0) {
         cktType = LADDERRLC;
+    } else if (flag_type.compare("coupledtreerc") == 0) {
+        cktType = COUPLEDTREERC;
+    } else if (flag_type.compare("clocktreer") == 0) {
+        cktType = CLOCKTREER;
+    } else if (flag_type.compare("clocktreerc") == 0) {
+        cktType = CLOCKTREERC;
+    } else if (flag_type.compare("clocktreerrand") == 0) {
+        cktType = CLOCKTREERRAND;
+    } else if (flag_type.compare("clocktreercrand") == 0) {
+        cktType = CLOCKTREERCRAND;
     } else {
         cout << "[ERROR] Circuit type is unknown" << endl;
         EXIT;
@@ -65,7 +75,12 @@ static void InitProjectInfo()
                             "-m        set circuit type.\n"
                             "Circuit Type(s):\n"
                             "ladderrc\n"
-                            "ladderrlc");
+                            "ladderrlc\n"
+                            "coupledtreerc\n"
+                            "clocktreer\n"
+                            "clocktreerc\n"
+                            "clocktreerrand\n"
+                            "clocktreercrand");
 }
 
 
@@ -79,8 +94,6 @@ static void GenerateNetlist()
     }
 
     // comment
-    fout << "*scale (" << scale << "), circuit type (" << FLAGS_t << ")\n\n";
-
     CktContext *context = new CktContext(cktType, scale);
     int error = context->executeGeneration(fout);
     if (error)
@@ -95,7 +108,7 @@ int main(int argc, char **argv)
     ParseCommandLineArgs(argc, argv);
     GenerateNetlist();
 
-    cout << "[NOTE] Finished!" << endl;
+    cout << "\n[NOTE] Finished!" << endl;
     return 0;
 }
 

@@ -5,5 +5,5 @@ CktBase::CktBase(int scale, const std::string &typeName)
 {
     m_scale = scale;
     m_typeName = typeName;
-    m_title = typeName + " --scale=" + STR(scale);
+    m_title = "scale(" + STR(scale) + ")" + "\t" + "circuit type(" + typeName + ")"; 
 }

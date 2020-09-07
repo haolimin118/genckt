@@ -1,6 +1,5 @@
 *scale (5), circuit type (ladderrlc)
 
-RLC ladder --scale=5
 VIN 1 0 1
 C0 1 0 1p
 R1 1 2 100

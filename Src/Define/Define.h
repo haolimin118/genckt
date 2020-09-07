@@ -33,5 +33,8 @@
 
 #define EXIT exit(1)
 
+/* For ClockTree circuit */
+const static int MAX_H_LENGTH = 5;
+
 
 #endif // GENCKT_DEFINE_DEFINE_H

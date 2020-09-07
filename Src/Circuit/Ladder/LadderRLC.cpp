@@ -33,7 +33,7 @@ int LadderRLC::Generate(ofstream &fout)
     if (error)
         return ERROR;
     
-    fout << m_title << "\n";
+    fout << "*" << m_title << "\n\n";
     fout << m_ss.str();
 
     return OKAY;
