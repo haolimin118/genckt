@@ -34,8 +34,13 @@ OBJ_DIR = build
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(subst .cpp,.o, $(SRCS)))
 
-# CXX = g++
-CXX = clang++
+UNAME := $(shell uname)
+ifeq ($(UNAME), Darwin)
+	CXX = clang++
+endif
+ifeq ($(UNAME), Linux)
+	CXX = g++
+endif
 
 # for debug
 CXXFLAGS = -Wall -g -std=c++11 $(INC_PATH) -DDEBUG -DTRACE
