@@ -9,7 +9,8 @@ INC_PATH = -I$(SRC_DIR) \
 		   -I$(SRC_DIR)/Utilities \
 		   -I$(SRC_DIR)/Circuit \
 		   -I$(SRC_DIR)/Circuit/Ladder \
-		   -I$(SRC_DIR)/Circuit/Tree
+		   -I$(SRC_DIR)/Circuit/Tree \
+		   -I$(SRC_DIR)/Circuit/Mesh
 
 LIB_PATH = 
 
@@ -26,7 +27,8 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeR.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeRC.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeRRand.cpp \
-	   $(SRC_DIR)/Circuit/Tree/ClockTreeRCRand.cpp
+	   $(SRC_DIR)/Circuit/Tree/ClockTreeRCRand.cpp \
+	   $(SRC_DIR)/Circuit/Mesh/MeshR.cpp
 
 OBJ_DIR = build
 
