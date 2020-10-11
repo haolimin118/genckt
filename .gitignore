@@ -39,3 +39,6 @@
 
 # exe
 genckt
+
+# big case
+Netlist/Mesh/*

@@ -9,7 +9,8 @@ INC_PATH = -I$(SRC_DIR) \
 		   -I$(SRC_DIR)/Utilities \
 		   -I$(SRC_DIR)/Circuit \
 		   -I$(SRC_DIR)/Circuit/Ladder \
-		   -I$(SRC_DIR)/Circuit/Tree
+		   -I$(SRC_DIR)/Circuit/Tree \
+		   -I$(SRC_DIR)/Circuit/Mesh
 
 LIB_PATH = 
 
@@ -26,14 +27,20 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeR.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeRC.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeRRand.cpp \
-	   $(SRC_DIR)/Circuit/Tree/ClockTreeRCRand.cpp
+	   $(SRC_DIR)/Circuit/Tree/ClockTreeRCRand.cpp \
+	   $(SRC_DIR)/Circuit/Mesh/MeshR.cpp
 
 OBJ_DIR = build
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(subst .cpp,.o, $(SRCS)))
 
-# CXX = g++
-CXX = clang++
+UNAME := $(shell uname)
+ifeq ($(UNAME), Darwin)
+	CXX = clang++
+endif
+ifeq ($(UNAME), Linux)
+	CXX = g++
+endif
 
 # for debug
 CXXFLAGS = -Wall -g -std=c++11 $(INC_PATH) -DDEBUG -DTRACE

@@ -49,6 +49,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = CLOCKTREERRAND;
     } else if (flag_type.compare("clocktreercrand") == 0) {
         cktType = CLOCKTREERCRAND;
+    } else if (flag_type.compare("meshr") == 0) {
+        cktType = MESHR;
     } else {
         cout << "[ERROR] Circuit type is unknown" << endl;
         EXIT;
@@ -80,7 +82,8 @@ static void InitProjectInfo()
                             "clocktreer\n"
                             "clocktreerc\n"
                             "clocktreerrand\n"
-                            "clocktreercrand");
+                            "clocktreercrand\n"
+                            "meshr");
 }
 
 

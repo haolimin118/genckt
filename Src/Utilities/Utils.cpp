@@ -1,5 +1,6 @@
 #include "Utils.h"
 #include <assert.h>
+#include <stdlib.h>
 
 using std::vector;
 
