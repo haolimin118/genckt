@@ -1,4 +1,4 @@
-#include "MeshR.h"
+#include "MeshRC.h"
 #include <iostream>
 #include "Utilities/MyString.h"
 #include "Utilities/Utils.h"
@@ -8,19 +8,19 @@ using std::ofstream;
 using std::cout;
 using std::endl;
 
-MeshR::MeshR(int scale, const string &typeName)
+MeshRC::MeshRC(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
     m_ss.clear();
     m_ss.str("");
 }
 
-MeshR::~MeshR()
+MeshRC::~MeshRC()
 {
     m_ss.clear();
 }
 
-int MeshR::Generate(ofstream &fout)
+int MeshRC::Generate(ofstream &fout)
 {
 #ifdef TRACE
     cout << LINE_INFO << endl;
@@ -40,15 +40,15 @@ int MeshR::Generate(ofstream &fout)
     return OKAY;
 }
 
-int MeshR::GenerateCkt()
+int MeshRC::GenerateCkt()
 {
     string vsrc = "VIN 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
     m_ss << vsrc << "\n";
 
-    string r;
+    string r, c;
     int pos = 0, neg = 0;
     int base = 1;
-    int rIndex = 1;
+    int rIndex = 1, cIndex = 1;
 
     for (int i = 1; i <= 2 * m_scale + 1; ++ i) {
         if (i % 2 == 1) {
@@ -59,7 +59,14 @@ int MeshR::GenerateCkt()
                 r = "R" + STR(rIndex) + " " + STR(pos) + " " + STR(neg) + " " + STR(RVAL);
                 rIndex++;
                 m_ss << r << "\n";
+                c = "C" + STR(cIndex) + " " + STR(pos) + " " + "0" + " " + STR(CVAL);
+                cIndex++;
+                m_ss << c << "\n";
             }
+            c = "C" + STR(cIndex) + " " + STR(neg) + " " + "0" + " " + STR(CVAL);
+            cIndex++;
+            m_ss << c << "\n";
+
             continue;
         }
 
@@ -82,7 +89,7 @@ int MeshR::GenerateCkt()
     return OKAY;
 }
 
-int MeshR::GenerateCmd()
+int MeshRC::GenerateCmd()
 {
 #ifdef TRACE
     cout << TRACE_LINE << endl;

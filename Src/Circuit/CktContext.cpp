@@ -6,7 +6,7 @@
 
 using std::ofstream;
 
-CktContext::CktContext(CktType type, int scale)
+CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
 {
     m_ckt = nullptr;
 
@@ -35,8 +35,13 @@ CktContext::CktContext(CktType type, int scale)
         case MESHR:
             m_ckt = new MeshR(scale, "Mesh R");
             break;
+        case MESHRC:
+            m_ckt = new MeshRC(scale, "Mesh RC");
+            break;
         default:;
     }
+
+    m_ckt->SetAnalysisType(anaType);
 
 }
 

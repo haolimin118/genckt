@@ -8,13 +8,15 @@
 using namespace std;
 
 // default params
-static int     scale = 1;
-static CktType cktType = LADDERRC;
-static string  pathname = "genckt.sp";
+static int          scale = 1;
+static CktType      cktType = LADDERRC;
+static string       pathname = "genckt.sp";
+static AnalysisType anaType = OP;
 
 DEFINE_string(t, "ladderrc",  "Set method to generate circuit.");
 DEFINE_int64(s,  1,           "Set circuit scale.");
 DEFINE_string(o, "genckt.sp", "Set output netlist pathname.");
+DEFINE_string(a, "op",        "Set analysis type.");
 
 static void ParseCommandLineArgs(int argc, char **argv);
 static void InitProjectInfo();
@@ -34,23 +36,25 @@ static void ParseCommandLineArgs(int argc, char **argv)
     }
     scale = FLAGS_s;
 
-    string flag_type = FLAGS_t;
-    if (flag_type.compare("ladderrc") == 0) {
+    string flag_cktType = FLAGS_t;
+    if (flag_cktType.compare("ladderrc") == 0) {
         cktType = LADDERRC;
-    } else if (flag_type.compare("ladderrlc") == 0) {
+    } else if (flag_cktType.compare("ladderrlc") == 0) {
         cktType = LADDERRLC;
-    } else if (flag_type.compare("coupledtreerc") == 0) {
+    } else if (flag_cktType.compare("coupledtreerc") == 0) {
         cktType = COUPLEDTREERC;
-    } else if (flag_type.compare("clocktreer") == 0) {
+    } else if (flag_cktType.compare("clocktreer") == 0) {
         cktType = CLOCKTREER;
-    } else if (flag_type.compare("clocktreerc") == 0) {
+    } else if (flag_cktType.compare("clocktreerc") == 0) {
         cktType = CLOCKTREERC;
-    } else if (flag_type.compare("clocktreerrand") == 0) {
+    } else if (flag_cktType.compare("clocktreerrand") == 0) {
         cktType = CLOCKTREERRAND;
-    } else if (flag_type.compare("clocktreercrand") == 0) {
+    } else if (flag_cktType.compare("clocktreercrand") == 0) {
         cktType = CLOCKTREERCRAND;
-    } else if (flag_type.compare("meshr") == 0) {
+    } else if (flag_cktType.compare("meshr") == 0) {
         cktType = MESHR;
+    } else if (flag_cktType.compare("meshrc") == 0) {
+        cktType = MESHRC;
     } else {
         cout << "[ERROR] Circuit type is unknown" << endl;
         EXIT;
@@ -58,11 +62,25 @@ static void ParseCommandLineArgs(int argc, char **argv)
     
     pathname = FLAGS_o;
 
+    string flag_anaType = FLAGS_a;
+    if (flag_anaType.compare("op") == 0) {
+        anaType = OP;
+    } else if (flag_anaType.compare("dc") == 0) {
+        anaType = DC;
+    } else if (flag_anaType.compare("ac") == 0) {
+        anaType = AC;
+    } else if (flag_anaType.compare("tran") == 0) {
+        anaType = TRAN;
+    } else {
+        cout << "[ERROR] Analysis type is unknown" << endl;
+        EXIT;
+    }
+
     google::ShutDownCommandLineFlags();
 
     /* dump summary */
-    printf("[NOTE] Pathname (%s), circuit type (%s), scale (%d)\n",
-        pathname.c_str(), flag_type.c_str(), scale);
+    printf("[NOTE] Pathname(%s), cktType(%s), scale(%d), anaType(%s)\n",
+        pathname.c_str(), flag_cktType.c_str(), scale, flag_anaType.c_str());
 
 }
 
@@ -75,7 +93,8 @@ static void InitProjectInfo()
                             "-o        set generated netlist pathname.\n"
                             "-s        set circuit scale.\n"
                             "-m        set circuit type.\n"
-                            "Circuit Type(s):\n"
+                            "-a        set analysis type.\n"
+                            "Circuit Types:\n"
                             "ladderrc\n"
                             "ladderrlc\n"
                             "coupledtreerc\n"
@@ -83,7 +102,8 @@ static void InitProjectInfo()
                             "clocktreerc\n"
                             "clocktreerrand\n"
                             "clocktreercrand\n"
-                            "meshr");
+                            "meshr\n"
+                            "meshrc");
 }
 
 
@@ -97,7 +117,7 @@ static void GenerateNetlist()
     }
 
     // comment
-    CktContext *context = new CktContext(cktType, scale);
+    CktContext *context = new CktContext(cktType, scale, anaType);
     int error = context->executeGeneration(fout);
     if (error)
         cout << "[ERROR] Generate netlist failed." << endl;

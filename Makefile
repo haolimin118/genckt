@@ -28,7 +28,8 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeRC.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeRRand.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeRCRand.cpp \
-	   $(SRC_DIR)/Circuit/Mesh/MeshR.cpp
+	   $(SRC_DIR)/Circuit/Mesh/MeshR.cpp \
+	   $(SRC_DIR)/Circuit/Mesh/MeshRC.cpp
 
 OBJ_DIR = build
 

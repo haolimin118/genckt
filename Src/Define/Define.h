@@ -8,6 +8,8 @@
  * @desp     : Basic defines
  */
 
+#include <string>
+
 #ifndef LINE_INFO
 #define LINE_INFO "\n[" << __FILE__ << " : line " << __LINE__ << " : " << __FUNCTION__ << "()] - "
 #endif
@@ -36,5 +38,23 @@
 /* For ClockTree circuit */
 const static int MAX_H_LENGTH = 5;
 
+enum AnalysisType { OP = 0, DC, AC, TRAN };
+
+/* For DC */
+const std::string V_DC = "10";
+
+/* For AC */
+const std::string STEP_TYPE = "DEC";
+const std::string NUM_STEPS = "10";
+const std::string FSTART = "1";
+const std::string FSTOP  = "1G";
+const std::string V_AC_MAG = "1";
+
+#define RVAL RandomDouble(0.01, 100)
+// #define RVAL 100
+#define CVAL RandomDouble(1e-13, 1e-11)
+// #define CVAL 1e-12
+#define LVAL RandomDouble(1e-4, 1e-2)
+// #define LVAL 1e-3
 
 #endif // GENCKT_DEFINE_DEFINE_H
