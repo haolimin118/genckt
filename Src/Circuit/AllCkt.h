@@ -9,5 +9,6 @@
 #include "Circuit/Tree/ClockTreeRRand.h"
 #include "Circuit/Tree/ClockTreeRCRand.h"
 #include "Circuit/Mesh/MeshR.h"
+#include "Circuit/Mesh/MeshRC.h"
 
 #endif // GENCKT_CIRCUIT_ALLCKT_H

@@ -7,3 +7,8 @@ CktBase::CktBase(int scale, const std::string &typeName)
     m_typeName = typeName;
     m_title = "scale(" + STR(scale) + ")" + "\t" + "circuit type(" + typeName + ")"; 
 }
+
+void CktBase::SetAnalysisType(AnalysisType anaType)
+{
+    m_anaType = anaType;
+}

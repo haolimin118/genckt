@@ -1,6 +1,7 @@
 #include "LadderRLC.h"
 #include <iostream>
 #include "Utilities/MyString.h"
+#include "Utilities/Utils.h"
 
 using std::string;
 using std::ofstream;
@@ -45,10 +46,10 @@ int LadderRLC::GenerateCkt()
 #ifdef TRACE
     cout << TRACE_LINE << endl;
 #endif
-    string vsrc = "VIN 1 0 1";
+    string vsrc = "VIN 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
     m_ss << vsrc << "\n";
 
-    string c0 = "C0 1 0 1p";
+    string c0 = "C0 1 0 " + STR(CVAL);
     m_ss << c0 << "\n";
 
     string r, l, c;
@@ -56,9 +57,9 @@ int LadderRLC::GenerateCkt()
 
     for (int i = 1; i <= m_scale; ++ i) {
         start = 2 * i - 1;
-        r = "R" + STR(i) + " " + STR(start) + " " + STR(start+1) + " " + "100";
-        l = "L" + STR(i) + " " + STR(start+1) + " " + STR(start+2) + " " + "1m";
-        c = "C" + STR(i) + " " + STR(start+2) + " " + "0" + " " + "1p";
+        r = "R" + STR(i) + " " + STR(start) + " " + STR(start+1) + " " + STR(RVAL);
+        l = "L" + STR(i) + " " + STR(start+1) + " " + STR(start+2) + " " + STR(LVAL);
+        c = "C" + STR(i) + " " + STR(start+2) + " " + "0" + " " + STR(CVAL);
         m_ss << r << "\n";
         m_ss << l << "\n";
         m_ss << c << "\n";
@@ -74,9 +75,24 @@ int LadderRLC::GenerateCmd()
 #ifdef TRACE
     cout << TRACE_LINE << endl;
 #endif
-    m_ss << ".OP" << "\n";
-    m_ss << ".PRINT V(" << STR(2 * m_scale + 1) << ")" << "\n";
-    m_ss << ".ends" << "\n";
+
+    switch (m_anaType) {
+        case OP:
+            m_ss << ".OP" << "\n";
+            m_ss << ".PRINT OP V(" << (2*m_scale+1) << ")" << "\n";
+            break;
+        case DC:
+            break;
+        case AC:
+            m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
+                 << FSTART << " " << FSTOP << "\n";
+            m_ss << ".PRINT AC vdb(" << STR(2*m_scale+1) << ")" << "\n";
+            break;
+        case TRAN:
+            break;
+    }
+
+    m_ss << ".end" << "\n";
 
     return OKAY;
 }

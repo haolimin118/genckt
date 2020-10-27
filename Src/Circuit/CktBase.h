@@ -21,14 +21,16 @@ public:
 
 public:
     virtual int Generate(std::ofstream &fout) = 0;
+    void        SetAnalysisType(AnalysisType anaType);
 
 protected:
     virtual int GenerateCkt() = 0;
     virtual int GenerateCmd() = 0;
 
-    int         m_scale;
-    std::string m_typeName;
-    std::string m_title;
+    int             m_scale;
+    std::string     m_typeName;
+    std::string     m_title;
+    AnalysisType    m_anaType;
 };
 
 #endif // GENCKT_CIRCUIT_CKTBASE_H

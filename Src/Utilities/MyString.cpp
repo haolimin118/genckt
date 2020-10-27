@@ -1,4 +1,5 @@
 #include "MyString.h"
+#include <sstream>
 
 std::string STR(int n)
 {
@@ -7,5 +8,7 @@ std::string STR(int n)
 
 std::string STR(double d)
 {
-    return std::to_string(d);
+    std::stringstream ss;
+    ss << d;
+    return ss.str();
 }

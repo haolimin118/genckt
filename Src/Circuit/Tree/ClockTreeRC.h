@@ -26,6 +26,7 @@ private:
     int GenerateCmd() override;
 
     std::stringstream m_ss;
+    int               m_outNode;
 };
 
 #endif // GENCKT_CIRCUIT_TREE_CLOCKTREERC_H

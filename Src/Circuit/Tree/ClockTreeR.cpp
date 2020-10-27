@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include "Utilities/MyString.h"
+#include "Utilities/Utils.h"
 
 using std::string;
 using std::ofstream;
@@ -13,6 +14,7 @@ ClockTreeR::ClockTreeR(int scale, const string &typeName)
 {
     m_ss.clear();
     m_ss.str("");
+    m_outNode = 0;
 }
 
 ClockTreeR::~ClockTreeR()
@@ -42,12 +44,12 @@ int ClockTreeR::Generate(ofstream &fout)
 
 int ClockTreeR::GenerateCkt()
 {
-    string vsrc = "VIN 1 0 1";
+    string vsrc = "VIN 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
     m_ss << vsrc << "\n";
 
     int maxH = MAX_H_LENGTH;
     if (maxH == 0) {
-        string r0 = "R0 1 0 100";
+        string r0 = "R0 1 0 " + STR(RVAL);
         m_ss << r0 << "\n";
         m_ss << "\n";
         return OKAY; 
@@ -60,7 +62,7 @@ int ClockTreeR::GenerateCkt()
     int posNodeIndex = 0, negNodeIndex = 0;
     int fanout = m_scale;
 
-    string r0 = "R0 1 2 100";
+    string r0 = "R0 1 2 " + STR(RVAL);
     m_ss << r0 << "\n";
 
     for (i = 1; i < maxH; ++ i) {
@@ -71,7 +73,7 @@ int ClockTreeR::GenerateCkt()
         for (int j = 0; j < rCount; ++ j) {
             posNodeIndex = j / fanout + nodeIndex;
             negNodeIndex = nodeIndex + rPrevCount + j;
-            r = "R" + STR(rIndex) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + "100";
+            r = "R" + STR(rIndex) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
             m_ss << r << "\n";
             rIndex++;
         }
@@ -84,9 +86,10 @@ int ClockTreeR::GenerateCkt()
     for (int j = 0; j < rCount; ++ j) {
         posNodeIndex = j / fanout + nodeIndex;
         negNodeIndex = 0;
-        r = "R" + STR(rIndex) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + "100";
+        r = "R" + STR(rIndex) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
         m_ss << r << "\n";
         rIndex++;
+        m_outNode = posNodeIndex;
     }
 
     return OKAY;
@@ -94,7 +97,22 @@ int ClockTreeR::GenerateCkt()
 
 int ClockTreeR::GenerateCmd()
 {
-    m_ss << ".OP" << "\n";
-    m_ss << ".ENDS" << "\n";
+    switch (m_anaType) {
+        case OP:
+            m_ss << ".OP" << "\n";
+            m_ss << ".PRINT OP V(" << m_outNode << ")" << "\n";
+            break;
+        case DC:
+            break;
+        case AC:
+            m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
+                 << FSTART << " " << FSTOP << "\n";
+            m_ss << ".PRINT AC vdb(" << m_outNode << ")" << "\n";
+            break;
+        case TRAN:
+            break;
+    }
+
+    m_ss << ".end" << "\n";
     return OKAY;
 }

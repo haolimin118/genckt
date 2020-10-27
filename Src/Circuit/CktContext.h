@@ -8,6 +8,7 @@
  * @desp     : Circuit Context, using Strategy Pattern.
  */
 
+#include "Define/Define.h"
 #include <string>
 #include <fstream>
 
@@ -17,13 +18,13 @@ enum CktType { LADDERRC = 0, LADDERRLC,
                COUPLEDTREERC, /* COUPLEDTREERLC */
                CLOCKTREER, CLOCKTREERC,
                CLOCKTREERRAND, CLOCKTREERCRAND,
-               MESHR };
+               MESHR, MESHRC };
 
 
 class CktContext
 {
 public:
-    CktContext(CktType type, int scale);
+    CktContext(CktType type, int scale, AnalysisType anaType);
     ~CktContext() {}
 
     int executeGeneration(std::ofstream &fout);

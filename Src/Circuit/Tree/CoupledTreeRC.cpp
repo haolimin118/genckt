@@ -1,6 +1,7 @@
 #include "CoupledTreeRC.h"
 #include <iostream>
 #include "Utilities/MyString.h"
+#include "Utilities/Utils.h"
 
 using std::string;
 using std::ofstream;
@@ -41,8 +42,8 @@ int CoupledTreeRC::Generate(ofstream &fout)
 
 int CoupledTreeRC::GenerateCkt()
 {
-    string vsrc0 = "VIN0 10 0 1";
-    string vsrc1 = "VIN1 11 0 1";
+    string vsrc0 = "VIN0 10 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
+    string vsrc1 = "VIN1 11 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
 
     m_ss << vsrc0 << "\n";
     m_ss << vsrc1 << "\n";
@@ -59,11 +60,11 @@ int CoupledTreeRC::GenerateCkt()
        r1PosNode = STR(i) + "1";
        r1NegNode = STR(i+1) + "1";
 
-       r0 = "R" + STR(i) + "0" + " " + r0PosNode + " " + r0NegNode + " " + "100";
-       c0 = "C" + STR(i) + "0" + " " + r0NegNode + " " + "0" + " " + "1p";
-       r1 = "R" + STR(i) + "1" + " " + r1PosNode + " " + r1NegNode + " " + "100";
-       c1 = "C" + STR(i) + "1" + " " + r1NegNode + " " + "0" + " " + "1p";
-       cc = "C" + STR(i) + "C" + " " + r0NegNode + " " + r1NegNode + " " + "1p";
+       r0 = "R" + STR(i) + "0" + " " + r0PosNode + " " + r0NegNode + " " + STR(RVAL);
+       c0 = "C" + STR(i) + "0" + " " + r0NegNode + " " + "0" + " " + STR(CVAL);
+       r1 = "R" + STR(i) + "1" + " " + r1PosNode + " " + r1NegNode + " " + STR(RVAL);
+       c1 = "C" + STR(i) + "1" + " " + r1NegNode + " " + "0" + " " + STR(CVAL);
+       cc = "C" + STR(i) + "C" + " " + r0NegNode + " " + r1NegNode + " " + STR(CVAL);
 
        m_ss << r0 << "\n" << c0 << "\n";
        m_ss << r1 << "\n" << c1 << "\n";
@@ -78,13 +79,25 @@ int CoupledTreeRC::GenerateCkt()
 
 int CoupledTreeRC::GenerateCmd()
 {
-    m_ss << ".OP" << "\n";
+    string out0 = STR(m_scale+1) + "0";
+    string out1 = STR(m_scale+1) + "1";
 
-    string out0 = "V(" + STR(m_scale+1) + "0" + ")";
-    string out1 = "V(" + STR(m_scale+1) + "1" + ")";
+    switch (m_anaType) {
+        case OP:
+            m_ss << ".OP" << "\n";
+            m_ss << ".PRINT OP" << " " << out0 << " " << out1 << "\n";
+            break;
+        case DC:
+            break;
+        case AC:
+            m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
+                 << FSTART << " " << FSTOP << "\n";
+            m_ss << ".PRINT AC vdb(" << out0 << ")"<< "\n";
+            break;
+        case TRAN:
+            break;
+    }
 
-    m_ss << ".PRINT" << " " << out0 << " " << out1 << "\n";
-    m_ss << ".ENDS" << "\n";
-
+    m_ss << ".end" << "\n";
     return OKAY;
 }

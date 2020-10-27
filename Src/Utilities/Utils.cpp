@@ -1,8 +1,12 @@
 #include "Utils.h"
 #include <assert.h>
 #include <stdlib.h>
+#include <random>
+#include <ctime>
 
-using std::vector;
+using namespace std;
+
+static default_random_engine e(time(0));
 
 int RandomInt(int min, int max)
 {
@@ -23,4 +27,10 @@ int VectorSum(const vector<int> &vec)
         sum += vec.at(i);
     }
     return sum;
+}
+
+double RandomDouble(double min, double max)
+{
+    uniform_real_distribution<double> u(min, max);
+    return u(e);
 }

@@ -17,6 +17,7 @@ ClockTreeRRand::ClockTreeRRand(int scale, const string &typeName)
 {
     m_ss.clear();
     m_ss.str("");
+    m_outNode = 0;
 }
 
 ClockTreeRRand::~ClockTreeRRand()
@@ -48,18 +49,18 @@ int ClockTreeRRand::GenerateCkt()
 {
     srand((int)time(0)); // random number seed
 
-    string vsrc = "VIN 1 0 1";
+    string vsrc = "VIN 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
     m_ss << vsrc << "\n";
 
     int maxH = MAX_H_LENGTH;
     if (maxH == 0) {
-        string r0 = "R0 1 0 100";
+        string r0 = "R0 1 0 " + STR(RVAL);
         m_ss << r0 << "\n";
         m_ss << "\n";
         return OKAY;
     }
 
-    string r0 = "R0 1 2 100";
+    string r0 = "R0 1 2 " + STR(RVAL);
     m_ss << r0 << "\n";
 
     string r;
@@ -86,7 +87,7 @@ int ClockTreeRRand::GenerateCkt()
             for (int m = 0; m < k; ++ m) {
                 posNodeIndex = nodeIndex + j;
                 negNodeIndex = nodeIndex + prevFanoutSum + currLevelRIndex;
-                r = "R" + STR(rIndex) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + "100";
+                r = "R" + STR(rIndex) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
                 currLevelRIndex++;
                 rIndex++;
                 m_ss << r << "\n";
@@ -109,10 +110,11 @@ int ClockTreeRRand::GenerateCkt()
         for (int m = 0; m < k; ++ m) {
             posNodeIndex = nodeIndex + j;
             negNodeIndex = 0;
-            r = "R" + STR(rIndex) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + "100";
+            r = "R" + STR(rIndex) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
             currLevelRIndex++;
             rIndex++;
             m_ss << r << "\n";
+            m_outNode = posNodeIndex;
         }
     }
 
@@ -121,8 +123,23 @@ int ClockTreeRRand::GenerateCkt()
 
 int ClockTreeRRand::GenerateCmd()
 {
-    m_ss << ".OP" << "\n";
-    m_ss << ".ENDS" << "\n";
+    switch (m_anaType) {
+        case OP:
+            m_ss << ".OP" << "\n";
+            m_ss << ".PRINT OP V(" << m_outNode << ")" << "\n";
+            break;
+        case DC:
+            break;
+        case AC:
+            m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
+                 << FSTART << " " << FSTOP << "\n";
+            m_ss << ".PRINT AC vdb(" << m_outNode << ")" << "\n";
+            break;
+        case TRAN:
+            break;
+    }
+
+    m_ss << ".end" << "\n";
 
     return OKAY;
 }
