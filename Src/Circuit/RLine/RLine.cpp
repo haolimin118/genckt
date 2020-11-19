@@ -1,4 +1,4 @@
-#include "LadderRC.h"
+#include "RLine.h"
 #include <iostream>
 #include "Utilities/MyString.h"
 #include "Utilities/Utils.h"
@@ -8,7 +8,7 @@ using std::ofstream;
 using std::cout;
 using std::endl;
 
-LadderRC::LadderRC(int scale, const string &typeName)
+RLine::RLine(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
     m_ss.clear();
@@ -16,12 +16,12 @@ LadderRC::LadderRC(int scale, const string &typeName)
     m_outIndex = 0;
 }
 
-LadderRC::~LadderRC()
+RLine::~RLine()
 {
     m_ss.clear();
 }
 
-int LadderRC::Generate(ofstream &fout)
+int RLine::Generate(ofstream &fout)
 {
 #ifdef TRACE
     cout << TRACE_LINE << endl;
@@ -39,38 +39,41 @@ int LadderRC::Generate(ofstream &fout)
     fout << m_ss.str();
 
     return OKAY;
-
 }
 
-int LadderRC::GenerateCkt()
+int RLine::GenerateCkt()
 {
 #ifdef TRACE
-    cout << TRACE_LINE << endl;
+    cout << LINE_INFO << endl;
 #endif
+
     string vsrc = "VIN 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
     m_ss << vsrc << "\n";
 
-    string r, c;
+    string r;
+    string pos, neg;
 
-    for (int i = 1; i <= m_scale; ++ i) {
-        r = "R" + STR(i) + " " + STR(i) + " " + STR(i+1) + " " + STR(RVAL);
-        c = "C" + STR(i) + " " + STR(i+1) + " " + "0" + " " + STR(CVAL);
+    int i = 1;
+    for (i = 1; i <= m_scale; ++ i) {
+        pos = STR(i);
+        neg = STR(i+1);
+        r = "R" + STR(i) + " " + pos + " " + neg + " " + STR(RVAL);
         m_ss << r << "\n";
-        m_ss << c << "\n";
     }
+    r = "R" + STR(i) + " " + STR(i) + " " + "0" + " " + STR(RVAL);
     m_ss << "\n";
 
-    m_outIndex = m_scale+1;
+    m_outIndex = i;
 
     return OKAY;
-
 }
 
-int LadderRC::GenerateCmd()
+int RLine::GenerateCmd()
 {
 #ifdef TRACE
     cout << TRACE_LINE << endl;
 #endif
+
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
@@ -94,3 +97,4 @@ int LadderRC::GenerateCmd()
 
     return OKAY;
 }
+

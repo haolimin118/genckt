@@ -42,6 +42,9 @@ enum AnalysisType { OP = 0, DC, AC, TRAN };
 
 /* For DC */
 const std::string V_DC = "10";
+const std::string V_START = "0";
+const std::string V_STOP = "10";
+const std::string V_INCR = "1";
 
 /* For AC */
 const std::string STEP_TYPE = "DEC";
@@ -50,11 +53,14 @@ const std::string FSTART = "1";
 const std::string FSTOP  = "1G";
 const std::string V_AC_MAG = "1";
 
-#define RVAL RandomDouble(0.01, 100)
-// #define RVAL 100
-#define CVAL RandomDouble(1e-13, 1e-11)
-// #define CVAL 1e-12
+// #define RVAL RandomDouble(0.1, 10)
+#define RVAL 100
+// #define CVAL RandomDouble(1e-14, 1e-12)
+#define CVAL 1e-12
 #define LVAL RandomDouble(1e-4, 1e-2)
 // #define LVAL 1e-3
+
+const static int L_GAP = 5;
+const static int COUPLED_NUM = 10;
 
 #endif // GENCKT_DEFINE_DEFINE_H

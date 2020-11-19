@@ -14,7 +14,7 @@ ClockTreeR::ClockTreeR(int scale, const string &typeName)
 {
     m_ss.clear();
     m_ss.str("");
-    m_outNode = 0;
+    m_outIndex = 0;
 }
 
 ClockTreeR::~ClockTreeR()
@@ -89,7 +89,7 @@ int ClockTreeR::GenerateCkt()
         r = "R" + STR(rIndex) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
         m_ss << r << "\n";
         rIndex++;
-        m_outNode = posNodeIndex;
+        m_outIndex = posNodeIndex;
     }
 
     return OKAY;
@@ -100,14 +100,17 @@ int ClockTreeR::GenerateCmd()
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".PRINT OP V(" << m_outNode << ")" << "\n";
+            m_ss << ".PRINT OP V(" << m_outIndex << ")" << "\n";
             break;
         case DC:
+            m_ss << ".DC" << " " << "VIN" << " " << V_START << " "
+                 << V_STOP << " " << V_INCR << "\n";
+            m_ss << ".PRINT DC V(" << m_outIndex << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
                  << FSTART << " " << FSTOP << "\n";
-            m_ss << ".PRINT AC vdb(" << m_outNode << ")" << "\n";
+            m_ss << ".PRINT AC vdb(" << m_outIndex << ")" << "\n";
             break;
         case TRAN:
             break;

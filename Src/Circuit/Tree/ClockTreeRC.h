@@ -22,11 +22,13 @@ public:
     int Generate(std::ofstream &fout) override;
 
 private:
+    DISALLOW_COPY_AND_ASSIGN(ClockTreeRC);
+    
     int GenerateCkt() override;
     int GenerateCmd() override;
 
     std::stringstream m_ss;
-    int               m_outNode;
+    int               m_outIndex;
 };
 
 #endif // GENCKT_CIRCUIT_TREE_CLOCKTREERC_H

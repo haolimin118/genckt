@@ -43,6 +43,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = LADDERRLC;
     } else if (flag_cktType.compare("coupledtreerc") == 0) {
         cktType = COUPLEDTREERC;
+    } else if (flag_cktType.compare("coupledtreemrc") == 0) {
+        cktType = COUPLEDTREEMRC;
     } else if (flag_cktType.compare("clocktreer") == 0) {
         cktType = CLOCKTREER;
     } else if (flag_cktType.compare("clocktreerc") == 0) {
@@ -55,6 +57,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = MESHR;
     } else if (flag_cktType.compare("meshrc") == 0) {
         cktType = MESHRC;
+    } else if (flag_cktType.compare("rline") == 0) {
+        cktType = RLINE;
     } else {
         cout << "[ERROR] Circuit type is unknown" << endl;
         EXIT;
@@ -98,12 +102,14 @@ static void InitProjectInfo()
                             "ladderrc\n"
                             "ladderrlc\n"
                             "coupledtreerc\n"
+                            "coupledtreemrc\n"
                             "clocktreer\n"
                             "clocktreerc\n"
                             "clocktreerrand\n"
                             "clocktreercrand\n"
                             "meshr\n"
-                            "meshrc");
+                            "meshrc\n"
+                            "rline");
 }
 
 
