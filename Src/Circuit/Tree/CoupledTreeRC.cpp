@@ -13,6 +13,7 @@ CoupledTreeRC::CoupledTreeRC(int scale, const string &typeName)
 {
     m_ss.clear();
     m_ss.str("");
+    m_outIndex = 0;
 }
 
 CoupledTreeRC::~CoupledTreeRC()
@@ -73,21 +74,26 @@ int CoupledTreeRC::GenerateCkt()
 
     m_ss << "\n";
 
+    m_outIndex = m_scale + 1;
+
     return OKAY;
 
 }
 
 int CoupledTreeRC::GenerateCmd()
 {
-    string out0 = STR(m_scale+1) + "0";
-    string out1 = STR(m_scale+1) + "1";
+    string out0 = STR(m_outIndex) + "0";
+    string out1 = STR(m_outIndex) + "1";
 
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".PRINT OP" << " " << out0 << " " << out1 << "\n";
+            m_ss << ".PRINT OP(" << out0 << ")" << "\n";
             break;
         case DC:
+            m_ss << ".DC" << " " << "VIN0" << " " << V_START << " "
+                 << V_STOP << " " << V_INCR << "\n";
+            m_ss << ".PRINT DC V(" << out0 << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "

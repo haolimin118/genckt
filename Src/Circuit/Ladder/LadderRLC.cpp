@@ -13,6 +13,7 @@ LadderRLC::LadderRLC(int scale, const string &typeName)
 {
     m_ss.clear();
     m_ss.str("");
+    m_outIndex = 0;
 }
 
 LadderRLC::~LadderRLC()
@@ -53,18 +54,29 @@ int LadderRLC::GenerateCkt()
     m_ss << c0 << "\n";
 
     string r, l, c;
-    int start = 0;
+    int nIndex = 1;
+    int rIndex = 1, cIndex = 1, lIndex = 1;
 
     for (int i = 1; i <= m_scale; ++ i) {
-        start = 2 * i - 1;
-        r = "R" + STR(i) + " " + STR(start) + " " + STR(start+1) + " " + STR(RVAL);
-        l = "L" + STR(i) + " " + STR(start+1) + " " + STR(start+2) + " " + STR(LVAL);
-        c = "C" + STR(i) + " " + STR(start+2) + " " + "0" + " " + STR(CVAL);
+        r = "R" + STR(rIndex) + " " + STR(nIndex) + " " + STR(nIndex+1) + " " + STR(RVAL);
+        rIndex++;
+        nIndex++;
         m_ss << r << "\n";
-        m_ss << l << "\n";
+
+        if (i % L_GAP == 0) {
+            l = "L" + STR(lIndex) + " " + STR(nIndex) + " " + STR(nIndex+1) + " " + STR(LVAL);
+            lIndex++;
+            nIndex++;
+            m_ss << l << "\n";
+        }
+
+        c = "C" + STR(cIndex) + " " + STR(nIndex) + " " + "0" + " " + STR(CVAL);
+        cIndex++;
         m_ss << c << "\n";
     }
     m_ss << "\n";
+
+    m_outIndex = nIndex;
 
     return OKAY;
 
@@ -79,14 +91,17 @@ int LadderRLC::GenerateCmd()
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".PRINT OP V(" << (2*m_scale+1) << ")" << "\n";
+            m_ss << ".PRINT OP V(" << m_outIndex << ")" << "\n";
             break;
         case DC:
+            m_ss << ".DC" << " " << "VIN" << " " << V_START << " "
+                 << V_STOP << " " << V_INCR << "\n";
+            m_ss << ".PRINT DC V(" << m_outIndex << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
                  << FSTART << " " << FSTOP << "\n";
-            m_ss << ".PRINT AC vdb(" << STR(2*m_scale+1) << ")" << "\n";
+            m_ss << ".PRINT AC vdb(" << m_outIndex << ")" << "\n";
             break;
         case TRAN:
             break;

@@ -22,9 +22,12 @@ public:
     int Generate(std::ofstream &fout) override;
 
 private:
+    DISALLOW_COPY_AND_ASSIGN(LadderRC);
+
     int GenerateCkt() override;
     int GenerateCmd() override;
 
+    int               m_outIndex;
     std::stringstream m_ss;
 
 };

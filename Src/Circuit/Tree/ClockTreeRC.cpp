@@ -14,7 +14,7 @@ ClockTreeRC::ClockTreeRC(int scale, const string &typeName)
 {
     m_ss.clear();
     m_ss.str("");
-    m_outNode = 0;
+    m_outIndex = 0;
 }
 
 ClockTreeRC::~ClockTreeRC()
@@ -79,7 +79,7 @@ int ClockTreeRC::GenerateCkt()
             m_ss << r << "\n";
             m_ss << c << "\n";
             rIndex++;
-            m_outNode = posNodeIndex;
+            m_outIndex = posNodeIndex;
         }
 
         nodeIndex += rPrevCount;
@@ -93,14 +93,17 @@ int ClockTreeRC::GenerateCmd()
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".PRINT OP V(" << m_outNode << ")" << "\n";
+            m_ss << ".PRINT OP V(" << m_outIndex << ")" << "\n";
             break;
         case DC:
+            m_ss << ".DC" << " " << "VIN" << " " << V_START << " "
+                 << V_STOP << " " << V_INCR << "\n";
+            m_ss << ".PRINT DC V(" << m_outIndex << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
                  << FSTART << " " << FSTOP << "\n";
-            m_ss << ".PRINT AC vdb(" << m_outNode << ")" << "\n";
+            m_ss << ".PRINT AC vdb(" << m_outIndex << ")" << "\n";
             break;
         case TRAN:
             break;

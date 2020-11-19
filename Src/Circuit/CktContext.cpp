@@ -20,6 +20,9 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
         case COUPLEDTREERC:
             m_ckt = new CoupledTreeRC(scale, "Coupled RC tree");
             break;
+        case COUPLEDTREEMRC:
+            m_ckt = new CoupledTreeMRC(scale, "Coupled MRC tree");
+            break;
         case CLOCKTREER:
             m_ckt = new ClockTreeR(scale, "Clock R tree");
             break;
@@ -37,6 +40,9 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
             break;
         case MESHRC:
             m_ckt = new MeshRC(scale, "Mesh RC");
+            break;
+        case RLINE:
+            m_ckt = new RLine(scale, "R Line");
             break;
         default:;
     }
