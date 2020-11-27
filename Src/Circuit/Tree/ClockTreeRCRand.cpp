@@ -86,7 +86,7 @@ int ClockTreeRCRand::GenerateCkt()
             fanoutList.push_back(RandomInt(minFanout, maxFanout));
 
         currLevelRIndex = 0;
-        for (int j = 0; j < fanoutList.size(); ++ j) {
+        for (size_t j = 0; j < fanoutList.size(); ++ j) {
             k = fanoutList.at(j);
             for (int m = 0; m < k; ++ m) {
                 posNodeIndex = nodeIndex + j;

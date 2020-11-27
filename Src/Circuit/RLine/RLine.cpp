@@ -61,7 +61,7 @@ int RLine::GenerateCkt()
         m_ss << r << "\n";
     }
     r = "R" + STR(i) + " " + STR(i) + " " + "0" + " " + STR(RVAL);
-    m_ss << "\n";
+    m_ss << r << "\n";
 
     m_outIndex = i;
 

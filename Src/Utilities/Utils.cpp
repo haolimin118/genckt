@@ -23,7 +23,7 @@ int RandomInt(int min, int max)
 int VectorSum(const vector<int> &vec)
 {
     int sum = 0;
-    for (int i = 0; i < vec.size(); ++ i) {
+    for (size_t i = 0; i < vec.size(); ++ i) {
         sum += vec.at(i);
     }
     return sum;
