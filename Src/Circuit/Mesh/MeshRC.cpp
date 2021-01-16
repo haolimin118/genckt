@@ -44,7 +44,7 @@ int MeshRC::GenerateCkt()
 {
     string vsrc1 = "V1 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG1;
     m_ss << vsrc1 << "\n";
-    string vsrc2 = "V2 " + STR(m_scale) + " 0 " + V_DC + " " + "AC" + " " + V_AC_MAG2; 
+    string vsrc2 = "V2 " + STR(m_scale+1) + " 0 " + V_DC + " " + "AC" + " " + V_AC_MAG2; 
     m_ss << vsrc2 << "\n";
 
     string r, c;
