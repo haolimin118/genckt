@@ -6,11 +6,13 @@
  * @author   : Hao Limin
  * @date     : 2020.10.26
  * @desp     : RC Mesh circuit.
- * @ref      : Doc/Ladder/MeshR.png
+ * @ref      : Doc/Ladder/MeshRC.png
+ * @modified : 2021.01.16
  */
 
 #include "Circuit/CktBase.h"
 #include <sstream>
+#include <vector>
 
 class MeshRC : public CktBase
 {
@@ -28,7 +30,7 @@ private:
     int GenerateCmd() override;
 
     std::stringstream m_ss;
-    int               m_outIndex;
+    std::vector<int>  m_outIndex;
 
 };
 
