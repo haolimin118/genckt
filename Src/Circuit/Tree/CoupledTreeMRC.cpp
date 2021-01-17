@@ -97,17 +97,17 @@ int CoupledTreeMRC::GenerateCmd()
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".PRINT OP(" << m_outNode << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outNode << ")" << "\n";
             break;
         case DC:
             m_ss << ".DC" << " " << "VIN0" << " " << V_START << " "
                  << V_STOP << " " << V_INCR << "\n";
-            m_ss << ".PRINT DC V(" << m_outNode << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outNode << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
                  << FSTART << " " << FSTOP << "\n";
-            m_ss << ".PRINT AC vdb(" << m_outNode << ")"<< "\n";
+            m_ss << ".SAVE V(" << m_outNode << ")"<< "\n";
             break;
         case TRAN:
             break;

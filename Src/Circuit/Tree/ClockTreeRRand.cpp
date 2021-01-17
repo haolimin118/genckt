@@ -126,17 +126,17 @@ int ClockTreeRRand::GenerateCmd()
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".PRINT OP V(" << m_outIndex << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outIndex << ")" << "\n";
             break;
         case DC:
             m_ss << ".DC" << " " << "VIN" << " " << V_START << " "
                  << V_STOP << " " << V_INCR << "\n";
-            m_ss << ".PRINT DC V(" << m_outIndex << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outIndex << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
                  << FSTART << " " << FSTOP << "\n";
-            m_ss << ".PRINT AC vdb(" << m_outIndex << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outIndex << ")" << "\n";
             break;
         case TRAN:
             break;

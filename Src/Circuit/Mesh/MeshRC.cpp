@@ -13,7 +13,6 @@ MeshRC::MeshRC(int scale, const string &typeName)
 {
     m_ss.clear();
     m_ss.str("");
-    m_outIndex = 0;
 }
 
 MeshRC::~MeshRC()
@@ -43,8 +42,10 @@ int MeshRC::Generate(ofstream &fout)
 
 int MeshRC::GenerateCkt()
 {
-    string vsrc = "VIN 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
-    m_ss << vsrc << "\n";
+    string vsrc1 = "V1 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG1;
+    m_ss << vsrc1 << "\n";
+    string vsrc2 = "V2 " + STR(m_scale+1) + " 0 " + V_DC + " " + "AC" + " " + V_AC_MAG2; 
+    m_ss << vsrc2 << "\n";
 
     string r, c;
     int pos = 0, neg = 0;
@@ -88,7 +89,9 @@ int MeshRC::GenerateCkt()
 
     m_ss << "\n";
 
-    m_outIndex = (m_scale + 1) * m_scale + 1;
+    m_outIndex.push_back((m_scale+1)*m_scale+1);
+    m_outIndex.push_back((m_scale+1)*(m_scale+1));
+
     return OKAY;
 }
 
@@ -101,17 +104,18 @@ int MeshRC::GenerateCmd()
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".PRINT OP V(" << m_outIndex << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outIndex[0] << ")" << "\n";
             break;
         case DC:
             m_ss << ".DC" << " " << "VIN" << " " << V_START << " "
                  << V_STOP << " " << V_INCR << "\n";
-            m_ss << ".PRINT DC V(" << m_outIndex << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outIndex[0] << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
                  << FSTART << " " << FSTOP << "\n";
-            m_ss << ".PRINT AC vdb(" << m_outIndex << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outIndex[0] << ") "
+                 << "V(" << m_outIndex[1] << ")" << "\n";
             break;
         case TRAN:
             break;

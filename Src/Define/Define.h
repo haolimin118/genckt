@@ -52,6 +52,8 @@ const std::string NUM_STEPS = "10";
 const std::string FSTART = "1";
 const std::string FSTOP  = "1G";
 const std::string V_AC_MAG = "1";
+const std::string V_AC_MAG1 = "1";
+const std::string V_AC_MAG2 = "2";
 
 // #define RVAL RandomDouble(0.1, 10)
 #define RVAL 100
