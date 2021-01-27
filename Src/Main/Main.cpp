@@ -59,6 +59,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = MESHRC;
     } else if (flag_cktType.compare("rline") == 0) {
         cktType = RLINE;
+    } else if (flag_cktType.compare("powergridr") == 0) {
+        cktType = POWERGRIDR;
     } else {
         cout << "[ERROR] Circuit type is unknown" << endl;
         EXIT;
@@ -109,7 +111,8 @@ static void InitProjectInfo()
                             "clocktreercrand\n"
                             "meshr\n"
                             "meshrc\n"
-                            "rline");
+                            "rline\n"
+                            "powergridr");
 }
 
 

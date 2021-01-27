@@ -19,7 +19,8 @@ enum CktType { LADDERRC = 0, LADDERRLC,
                CLOCKTREER, CLOCKTREERC,
                CLOCKTREERRAND, CLOCKTREERCRAND,
                MESHR, MESHRC, 
-               RLINE };
+               RLINE,
+               POWERGRIDR };
 
 
 class CktContext

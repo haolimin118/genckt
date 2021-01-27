@@ -65,4 +65,12 @@ const std::string V_AC_MAG2 = "2";
 const static int L_GAP = 5;
 const static int COUPLED_NUM = 10;
 
+/* for powergrid */
+const static int PG_NUM_PER_SCALE = 100;
+const static int PG_LAYER = 2;   // fixed
+const static int PG_CONTACT = 2; // fixed
+const std::string PG_R = "1.25";
+const std::string PG_V = "1";
+const std::string PG_I = "0.3125m";
+
 #endif // GENCKT_DEFINE_DEFINE_H
