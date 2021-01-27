@@ -11,7 +11,8 @@ INC_PATH = -I$(SRC_DIR) \
 		   -I$(SRC_DIR)/Circuit/Ladder \
 		   -I$(SRC_DIR)/Circuit/Tree \
 		   -I$(SRC_DIR)/Circuit/Mesh \
-           -I$(SRC_DIR)/Circuit/RLine
+           -I$(SRC_DIR)/Circuit/RLine \
+           -I$(SRC_DIR)/Circuit/PG
 
 LIB_PATH = 
 
@@ -32,11 +33,14 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/Tree/ClockTreeRCRand.cpp \
 	   $(SRC_DIR)/Circuit/Mesh/MeshR.cpp \
 	   $(SRC_DIR)/Circuit/Mesh/MeshRC.cpp \
-       $(SRC_DIR)/Circuit/RLine/RLine.cpp
+       $(SRC_DIR)/Circuit/RLine/RLine.cpp \
+       $(SRC_DIR)/Circuit/PG/PGR.cpp \
+       $(SRC_DIR)/Circuit/PG/PGRC.cpp
 
 OBJ_DIR = build
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(subst .cpp,.o, $(SRCS)))
+DEPS = $(addprefix $(OBJ_DIR)/, $(subst .cpp,.d, $(SRCS)))
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
@@ -47,10 +51,10 @@ ifeq ($(UNAME), Linux)
 endif
 
 # for debug
-CXXFLAGS = -Wall -g -std=c++11 $(INC_PATH) -DDEBUG -DTRACE
+CXXFLAGS = -Wall -g -std=c++11 -MMD $(INC_PATH) -DDEBUG -DTRACE
 # for release
-# CXXFLAGS = -w -O3 -std=c++11 $(INC_PATH) -DNDEBUG -DTRACE
-# CXXFLAGS = -w -O3 -std=c++11 $(INC_PATH) -DNDEBUG
+# CXXFLAGS = -w -O3 -std=c++11 -MMD $(INC_PATH) -DNDEBUG -DTRACE
+# CXXFLAGS = -w -O3 -std=c++11 -MMD $(INC_PATH) -DNDEBUG
 
 LDXXFLAGS = $(LIB_PATH) $(LIBS)
 
@@ -71,4 +75,6 @@ clean:
 	$(RM) $(OBJS)
 
 distclean:
-	$(RM) $(OBJS) $(TARGET)
+	$(RM) $(OBJS) $(TARGET) $(DEPS)
+
+-include $(DEPS)
