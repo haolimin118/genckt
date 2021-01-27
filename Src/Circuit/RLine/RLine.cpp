@@ -91,6 +91,7 @@ int RLine::GenerateCmd()
             break;
         case TRAN:
             break;
+        default:;
     }
 
     m_ss << ".end" << "\n";

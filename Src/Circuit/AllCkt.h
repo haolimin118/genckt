@@ -12,5 +12,6 @@
 #include "Circuit/Mesh/MeshR.h"
 #include "Circuit/Mesh/MeshRC.h"
 #include "Circuit/RLine/RLine.h"
+#include "Circuit/PG/PGR.h"
 
 #endif // GENCKT_CIRCUIT_ALLCKT_H

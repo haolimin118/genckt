@@ -44,6 +44,9 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
         case RLINE:
             m_ckt = new RLine(scale, "R Line");
             break;
+        case POWERGRIDR:
+            m_ckt = new PGR(scale, "powergrid R");
+            break;
         default:;
     }
 
