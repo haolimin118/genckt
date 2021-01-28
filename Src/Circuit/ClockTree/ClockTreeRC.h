@@ -1,12 +1,12 @@
-#ifndef GENCKT_CIRCUIT_TREE_CLOCKTREERC_H
-#define GENCKT_CIRCUIT_TREE_CLOCKTREERC_H
+#ifndef GENCKT_CIRCUIT_CLOCKTREE_CLOCKTREERC_H
+#define GENCKT_CIRCUIT_CLOCKTREE_CLOCKTREERC_H
 
 /*
  * @filename : ClockTreeRC.h
  * @author   : Hao Limin
  * @dete     : 2020.09.07
  * @desp     : Clock Tree, RC.
- * @ref      : Doc/Tree/ClockTreeRC.png
+ * @ref      : Doc/ClockTree/ClockTreeRC.png
  */
 
 #include "Circuit/CktBase.h"
@@ -31,4 +31,4 @@ private:
     int               m_outIndex;
 };
 
-#endif // GENCKT_CIRCUIT_TREE_CLOCKTREERC_H
+#endif // GENCKT_CIRCUIT_CLOCKTREE_CLOCKTREERC_H

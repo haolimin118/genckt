@@ -1,12 +1,12 @@
-#ifndef GNECKT_CIRCUIT_TREE_COUPLEDTREEMRC_H
-#define GNECKT_CIRCUIT_TREE_COUPLEDTREEMRC_H
+#ifndef GNECKT_CIRCUIT_COUPLEDTREE_COUPLEDTREEMRC_H
+#define GNECKT_CIRCUIT_COUPLEDTREE_COUPLEDTREEMRC_H
 
 /*
  * @filename : CoupledTreeMRC.h
  * @author   : Hao Limin
  * @date     : 2020.11.08
  * @desp     : Two coupled multi RC lines.
- * @ref      : Doc/Tree/CoupledTreeRC.png
+ * @ref      : Doc/CoupledTree/CoupledTreeRC.png
  */
 
 #include "Circuit/CktBase.h"
@@ -31,4 +31,4 @@ private:
     std::string       m_outNode;
 };
 
-#endif // GNECKT_CIRCUIT_TREE_COUPLEDTREEMRC_H
+#endif // GNECKT_CIRCUIT_COUPLEDTREE_COUPLEDTREEMRC_H

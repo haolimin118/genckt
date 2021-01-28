@@ -1,12 +1,12 @@
-#ifndef GNECKT_CIRCUIT_TREE_COUPLEDTREERC_H
-#define GNECKT_CIRCUIT_TREE_COUPLEDTREERC_H
+#ifndef GNECKT_CIRCUIT_COUPLEDTREE_COUPLEDTREERC_H
+#define GNECKT_CIRCUIT_COUPLEDTREE_COUPLEDTREERC_H
 
 /*
  * @filename : CoupledTreeRC.h
  * @author   : Hao Limin
  * @date     : 2020.08.13
  * @desp     : Two coupled RC lines
- * @ref      : Doc/Tree/CoupledTreeRC.png
+ * @ref      : Doc/CoupledTree/CoupledTreeRC.png
  */
 
 #include "Circuit/CktBase.h"
@@ -32,4 +32,4 @@ private:
 
 };
 
-#endif // GNECKT_CIRCUIT_TREE_COUPLEDTREERC_H
+#endif // GNECKT_CIRCUIT_COUPLEDTREE_COUPLEDTREERC_H

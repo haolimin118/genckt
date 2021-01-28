@@ -60,7 +60,7 @@ int ClockTreeR::GenerateCkt()
     int rIndex = 1, rCount = 0, rPrevCount = 0;
     int nodeIndex = 2;
     int posNodeIndex = 0, negNodeIndex = 0;
-    int fanout = m_scale;
+    int fanout = m_scale; // scale -> fanout
 
     string r0 = "R0 1 2 " + STR(RVAL);
     m_ss << r0 << "\n";
