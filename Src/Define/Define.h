@@ -36,7 +36,7 @@
 #define EXIT exit(1)
 
 /* For ClockTree circuit */
-const static int MAX_H_LENGTH = 10;
+const static int MAX_H_LENGTH = 3;
 
 enum AnalysisType { OP = 0, DC, AC, TRAN };
 
