@@ -36,7 +36,7 @@
 #define EXIT exit(1)
 
 /* For ClockTree circuit */
-const static int MAX_H_LENGTH = 3;
+const static int MAX_H_LENGTH = 2;
 
 enum AnalysisType { OP = 0, DC, AC, TRAN };
 
@@ -54,6 +54,12 @@ const std::string FSTOP  = "1G";
 const std::string V_AC_MAG = "1";
 const std::string V_AC_MAG1 = "1";
 const std::string V_AC_MAG2 = "2";
+
+/* For Tran */
+const std::string V_TRAN_SIN = "sin(0 1 100MEG)";
+const std::string TSTEP = "0.1ns";
+const std::string TSTOP = "50ns";
+const std::string TSTART = "0";
 
 // #define RVAL RandomDouble(0.1, 10)
 #define RVAL 100

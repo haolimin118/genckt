@@ -9,7 +9,8 @@ INC_PATH = -I$(SRC_DIR) \
 		   -I$(SRC_DIR)/Utilities \
 		   -I$(SRC_DIR)/Circuit \
 		   -I$(SRC_DIR)/Circuit/Ladder \
-		   -I$(SRC_DIR)/Circuit/Tree \
+		   -I$(SRC_DIR)/Circuit/ClockTree \
+		   -I$(SRC_DIR)/Circuit/CoupledTree \
 		   -I$(SRC_DIR)/Circuit/Mesh \
            -I$(SRC_DIR)/Circuit/RLine \
            -I$(SRC_DIR)/Circuit/PG
@@ -25,12 +26,14 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/CktContext.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRC.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRLC.cpp \
-	   $(SRC_DIR)/Circuit/Tree/CoupledTreeRC.cpp \
-	   $(SRC_DIR)/Circuit/Tree/CoupledTreeMRC.cpp \
-	   $(SRC_DIR)/Circuit/Tree/ClockTreeR.cpp \
-	   $(SRC_DIR)/Circuit/Tree/ClockTreeRC.cpp \
-	   $(SRC_DIR)/Circuit/Tree/ClockTreeRRand.cpp \
-	   $(SRC_DIR)/Circuit/Tree/ClockTreeRCRand.cpp \
+	   $(SRC_DIR)/Circuit/CoupledTree/CoupledTreeRC.cpp \
+	   $(SRC_DIR)/Circuit/CoupledTree/CoupledTreeMRC.cpp \
+	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeR.cpp \
+	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRC.cpp \
+	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRRand.cpp \
+	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRCRand.cpp \
+	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRLink.cpp \
+	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRCLink.cpp \
 	   $(SRC_DIR)/Circuit/Mesh/MeshR.cpp \
 	   $(SRC_DIR)/Circuit/Mesh/MeshRC.cpp \
        $(SRC_DIR)/Circuit/RLine/RLine.cpp \
