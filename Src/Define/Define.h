@@ -36,7 +36,8 @@
 #define EXIT exit(1)
 
 /* For ClockTree circuit */
-const static int MAX_H_LENGTH = 2;
+const static int MAX_H_LENGTH = 500;
+const static int P_RLINK = 3; /* 1->100%, 2->50%, ..., 100->1%, 101->0 */
 
 enum AnalysisType { OP = 0, DC, AC, TRAN };
 
@@ -69,7 +70,7 @@ const std::string TSTART = "0";
 // #define LVAL 1e-3
 
 const static int L_GAP = 5;
-const static int COUPLED_NUM = 10;
+const static int COUPLED_NUM = 20;
 
 /* for powergrid */
 const static int PG_NUM_PER_SCALE = 100;
