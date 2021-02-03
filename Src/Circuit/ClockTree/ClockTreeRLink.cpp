@@ -165,7 +165,7 @@ int ClockTreeRLink::GenerateCkt()
     cout << TRACE_LINE << endl;
 #endif
 
-    string vsrc = "VIN 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG + " " + V_TRAN_SIN; // vsrc
+    string vsrc = "VIN 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG + " " + V_TRAN_PULSE; // vsrc
     m_ss << vsrc << "\n";
 
     string r = "R0 1 2 " + STR(RVAL); // R0
