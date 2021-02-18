@@ -98,7 +98,7 @@ int MeshR::GenerateCmd()
             m_ss << ".SAVE V(" << m_outIndex << ")" << "\n";
             break;
         case DC:
-            m_ss << ".DC" << " " << "VIN" << " " << V_START << " "
+            m_ss << ".DC" << " " << "Vsrc" << " " << V_START << " "
                  << V_STOP << " " << V_INCR << "\n";
             m_ss << ".SAVE V(" << m_outIndex << ")" << "\n";
             break;
