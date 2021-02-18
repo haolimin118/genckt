@@ -43,7 +43,7 @@ int MeshR::Generate(ofstream &fout)
 
 int MeshR::GenerateCkt()
 {
-    string vsrc = "VIN 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
+    string vsrc = "Vsrc 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
     m_ss << vsrc << "\n";
 
     string r;
@@ -75,7 +75,8 @@ int MeshR::GenerateCkt()
 
     pos = (m_scale + 1) * m_scale + 1;
     neg = 0;
-    r = "R" + STR(rIndex) + " " + STR(pos) + " " + STR(neg) + " " + STR(RVAL);
+    // r = "R" + STR(rIndex) + " " + STR(pos) + " " + STR(neg) + " " + STR(RVAL);
+    r = "Rout " + STR(pos) + " " + STR(neg) + " " + STR(RVAL);
     rIndex++;
     m_ss << r << "\n";
 

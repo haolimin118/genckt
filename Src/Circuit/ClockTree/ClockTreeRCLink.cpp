@@ -241,16 +241,16 @@ int ClockTreeRCLink::GenerateCkt()
     c = "C8 10 0 " + STR(CVAL); // C8
     m_ss << c << "\n";
 
-    r = "R9 6 9x " + STR(RVAL); // R9
+    r = "R9 6 _9 " + STR(RVAL); // R9
     m_ss << r << "\n";
 
-    c = "C9 9x 0 " + STR(CVAL); // C9
+    c = "C9 _9 0 " + STR(CVAL); // C9
     m_ss << c << "\n";
 
-    r = "R10 6 10x " + STR(RVAL); // R10
+    r = "R10 6 _10 " + STR(RVAL); // R10
     m_ss << r << "\n";
 
-    c = "C10 10x 0 " + STR(CVAL); // C10
+    c = "C10 _10 0 " + STR(CVAL); // C10
     m_ss << c << "\n";
 
     m_outs.push_back(STR(1));
@@ -263,8 +263,8 @@ int ClockTreeRCLink::GenerateCkt()
     m_outs.push_back(STR(8));
     m_outs.push_back(STR(9));
     m_outs.push_back(STR(10));
-    m_outs.push_back("9x");
-    m_outs.push_back("10x");
+    m_outs.push_back("_9");
+    m_outs.push_back("_10");
 
     /* adaptive part */
     int maxH = MAX_H_LENGTH;
