@@ -42,3 +42,4 @@ genckt
 
 # big case
 Netlist/*
+*.sp
