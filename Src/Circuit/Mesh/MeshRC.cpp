@@ -42,10 +42,10 @@ int MeshRC::Generate(ofstream &fout)
 
 int MeshRC::GenerateCkt()
 {
-    string vsrc1 = "V1 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG1;
+    string vsrc1 = "Vsrc 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG1;
     m_ss << vsrc1 << "\n";
-    string vsrc2 = "V2 " + STR(m_scale+1) + " 0 " + V_DC + " " + "AC" + " " + V_AC_MAG2; 
-    m_ss << vsrc2 << "\n";
+    // string vsrc2 = "V2 " + STR(m_scale+1) + " 0 " + V_DC + " " + "AC" + " " + V_AC_MAG1; 
+    // m_ss << vsrc2 << "\n";
 
     string r, c;
     int pos = 0, neg = 0;
@@ -81,16 +81,16 @@ int MeshRC::GenerateCkt()
         }
     }
 
-    pos = (m_scale + 1) * m_scale + 1;
+    pos = (m_scale + 1) * (m_scale + 1);
     neg = 0;
-    r = "R" + STR(rIndex) + " " + STR(pos) + " " + STR(neg) + " " + STR(RVAL);
-    rIndex++;
+    r = "Rout " + STR(pos) + " " + STR(neg) + " " + "10k";
     m_ss << r << "\n";
 
     m_ss << "\n";
 
-    m_outIndex.push_back((m_scale+1)*m_scale+1);
     m_outIndex.push_back((m_scale+1)*(m_scale+1));
+    m_outIndex.push_back((m_scale+1)*m_scale+1);
+    m_outIndex.push_back(m_scale+1);
 
     return OKAY;
 }
@@ -104,18 +104,23 @@ int MeshRC::GenerateCmd()
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".SAVE V(" << m_outIndex[0] << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outIndex[0] << ") "
+                 << "V(" << m_outIndex[1] << ") "
+                 << "V(" << m_outIndex[2] << ")" << "\n";
             break;
         case DC:
             m_ss << ".DC" << " " << "VIN" << " " << V_START << " "
                  << V_STOP << " " << V_INCR << "\n";
-            m_ss << ".SAVE V(" << m_outIndex[0] << ")" << "\n";
+            m_ss << ".SAVE V(" << m_outIndex[0] << ") "
+                 << "V(" << m_outIndex[1] << ") "
+                 << "V(" << m_outIndex[2] << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
                  << FSTART << " " << FSTOP << "\n";
             m_ss << ".SAVE V(" << m_outIndex[0] << ") "
-                 << "V(" << m_outIndex[1] << ")" << "\n";
+                 << "V(" << m_outIndex[1] << ") "
+                 << "V(" << m_outIndex[2] << ")" << "\n";
             break;
         case TRAN:
             break;
