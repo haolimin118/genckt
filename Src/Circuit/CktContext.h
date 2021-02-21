@@ -18,7 +18,7 @@ enum CktType { LADDERRC = 0, LADDERRLC,
                COUPLEDTREERC, COUPLEDTREEMRC, /* COUPLEDTREERLC */
                CLOCKTREER, CLOCKTREERC,
                CLOCKTREERRAND, CLOCKTREERCRAND,
-               CLOCKTREERLINK, CLOCKTREERCLINK,
+               CLOCKTREERCLINK,
                MESHR, MESHRC, 
                RLINE,
                POWERGRIDR };
