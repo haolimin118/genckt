@@ -38,6 +38,9 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
         case CLOCKTREERCLINK:
             m_ckt = new ClockTreeRCLink(scale, "Clock RC tree (plus some R links)");
             break;
+        case CLOCKTREEMESH:
+            m_ckt = new ClockTreeMesh(scale, "Clock tree mesh (fixed scale=8)");
+            break;
         case MESHR:
             m_ckt = new MeshR(scale, "Mesh R");
             break;

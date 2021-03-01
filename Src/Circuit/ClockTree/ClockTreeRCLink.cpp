@@ -114,7 +114,7 @@ int ClockTreeRCLink::GenerateCkt()
     r = "R12 6 12 " + STR(RVAL); // R12
     m_ss << r << "\n";
 
-    c = "C10 12 0 " + STR(CVAL); // C12
+    c = "C12 12 0 " + STR(CVAL); // C12
     m_ss << c << "\n";
 
     m_outs.push_back(STR(1));
@@ -219,7 +219,7 @@ int ClockTreeRCLink::GenerateCmd()
             m_ss << ".OP" << "\n";
             break;
         case DC:
-            m_ss << ".DC" << " " << "VIN" << " " << V_START << " "
+            m_ss << ".DC" << " " << "Vsrc" << " " << V_START << " "
                  << V_STOP << " " << V_INCR << "\n";
             break;
         case AC:

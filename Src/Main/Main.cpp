@@ -55,6 +55,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = CLOCKTREERCRAND;
     } else if (flag_cktType.compare("clocktreerclink") == 0) {
         cktType = CLOCKTREERCLINK;
+    } else if (flag_cktType.compare("clocktreemesh") == 0) {
+        cktType = CLOCKTREEMESH;
     } else if (flag_cktType.compare("meshr") == 0) {
         cktType = MESHR;
     } else if (flag_cktType.compare("meshrc") == 0) {
@@ -112,6 +114,7 @@ static void InitProjectInfo()
                             "clocktreerrand\n"
                             "clocktreercrand\n"
                             "clocktreerclink\n"
+                            "clocktreemesh\n"
                             "meshr\n"
                             "meshrc\n"
                             "rline\n"
