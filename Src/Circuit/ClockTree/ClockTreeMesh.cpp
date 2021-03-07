@@ -1,4 +1,4 @@
-#include "ClockTreeRCLink.h"
+#include "ClockTreeMesh.h"
 #include <iostream>
 #include <cmath>
 #include "Utilities/MyString.h"
@@ -9,20 +9,20 @@ using std::ofstream;
 using std::cout;
 using std::endl;
 
-ClockTreeRCLink::ClockTreeRCLink(int scale, const string &typeName)
+ClockTreeMesh::ClockTreeMesh(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
     m_ss.clear();
     m_ss.str("");
 }
 
-ClockTreeRCLink::~ClockTreeRCLink()
+ClockTreeMesh::~ClockTreeMesh()
 {
     m_ss.clear();
     m_ss.str("");
 }
 
-int ClockTreeRCLink::Generate(ofstream &fout)
+int ClockTreeMesh::Generate(ofstream &fout)
 {
 #ifdef TRACE
     cout << TRACE_LINE << endl;
@@ -42,7 +42,7 @@ int ClockTreeRCLink::Generate(ofstream &fout)
     return OKAY;
 }
 
-int ClockTreeRCLink::GenerateCkt()
+int ClockTreeMesh::GenerateCkt()
 {
 #ifdef TRACE
     cout << TRACE_LINE << endl;
@@ -96,26 +96,26 @@ int ClockTreeRCLink::GenerateCkt()
     r = "R9 5 9 " + STR(RVAL); // R9
     m_ss << r << "\n";
 
-    c = "C9 9 0 " + STR(CVAL); // C9
-    m_ss << c << "\n";
-
     r = "R10 5 10 " + STR(RVAL); // R10
     m_ss << r << "\n";
-
-    c = "C10 10 0 " + STR(CVAL); // C10
-    m_ss << c << "\n";
 
     r = "R11 6 11 " + STR(RVAL); // R11
     m_ss << r << "\n";
 
-    c = "C11 11 0 " + STR(CVAL); // C11
-    m_ss << c << "\n";
-
     r = "R12 6 12 " + STR(RVAL); // R12
     m_ss << r << "\n";
 
-    c = "C12 12 0 " + STR(CVAL); // C12
-    m_ss << c << "\n";
+    r = "R13 7 13 " + STR(RVAL); // R13
+    m_ss << r << "\n";
+
+    r = "R14 7 14 " + STR(RVAL); // R14
+    m_ss << r << "\n";
+
+    r = "R15 8 15 " + STR(RVAL); // R15
+    m_ss << r << "\n";
+
+    r = "R16 8 16 " + STR(RVAL); // R16
+    m_ss << r << "\n";
 
     m_outs.push_back(STR(1));
     m_outs.push_back(STR(2));
@@ -129,86 +129,66 @@ int ClockTreeRCLink::GenerateCkt()
     m_outs.push_back(STR(10));
     m_outs.push_back(STR(11));
     m_outs.push_back(STR(12));
+    m_outs.push_back(STR(13));
+    m_outs.push_back(STR(14));
+    m_outs.push_back(STR(15));
+    m_outs.push_back(STR(16));
 
-    /* adaptive part */
-    int maxH = MAX_H_LENGTH;
-    if (maxH == 0) {
-        r = "R13 9 10 " + STR(RVAL);
-        m_ss << r << "\n\n";
-        return OKAY;
-    }
+    m_ss << "*mesh begin" << "\n";
 
-    int rIndex = 13, cIndex = 13;
-    int nodeIndex = 13, posNodeIndex = 0, negNodeIndex = 0;
+    int nodeIndex = 9, posNodeIndex = 0, negNodeIndex = 0;
+    int rIndex = 17, cIndex = 9;
 
-    if (maxH == 1) {
-        for (int i = 0; i < m_scale; ++ i) {
-            posNodeIndex = 9;
-            negNodeIndex = nodeIndex + i;
+    int Length = MAX_CTM_LENGTH;
+    int Scale = 8; // fixed scale
+
+    for (int i = 0; i < Length; ++ i) {
+
+        // vertical
+        for (int j = 0; j < Scale - 1; ++ j) {
+            posNodeIndex = j + nodeIndex;
+            negNodeIndex = j + nodeIndex + 1;
             r = "R" + STR(rIndex++) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
             m_ss << r << "\n";
-            c = "C" + STR(cIndex++) + " " + STR(negNodeIndex) + " " + "0" + " " + STR(CVAL);
+
+            c = "C" + STR(cIndex++) + " " + STR(posNodeIndex) + " " + "0" + " " + STR(CVAL);
             m_ss << c << "\n";
         }
-        for (int i = 0; i < m_scale; ++ i) {
-            posNodeIndex = 10;
-            negNodeIndex = nodeIndex + m_scale + i;
-            r = "R" + STR(rIndex++) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
-            m_ss << r << "\n";
-            c = "C" + STR(cIndex++) + " " + STR(negNodeIndex) + " " + "0" + " " + STR(CVAL);
-            m_ss << c << "\n";
-        }
-        r = "R" + STR(rIndex++) + " " + "9" + " " + "10" + " " + STR(RVAL);
-        m_ss << r << "\n";
-
-        return OKAY;
-    }
-
-    for (int i = 0; i < m_scale; ++ i) {
-        posNodeIndex = 9;
-        negNodeIndex = nodeIndex + i;
-        r = "R" + STR(rIndex++) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
-        m_ss << r << "\n";
-        c = "C" + STR(cIndex++) + " " + STR(negNodeIndex) + " " + "0" + " " + STR(CVAL);
+        c = "C" + STR(cIndex++) + " " + STR(nodeIndex + Scale - 1) + " " + "0" + " " + STR(CVAL);
         m_ss << c << "\n";
+
+        // horizontal
+        for (int j = 0; j < Scale; ++ j) {
+            posNodeIndex = j + nodeIndex;
+            negNodeIndex = j + nodeIndex + Scale;
+            r = "R" + STR(rIndex++) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
+            m_ss << r << "\n";
+        }
+
+        m_ss << "\n";
+
+        nodeIndex += Scale;
     }
-    for (int i = 0; i < m_scale; ++ i) {
-        posNodeIndex = 10;
-        negNodeIndex = nodeIndex + m_scale + i;
-        r = "R" + STR(rIndex++) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
-        m_ss << r << "\n";
-        c = "C" + STR(cIndex++) + " " + STR(negNodeIndex) + " " + "0" + " " + STR(CVAL);
+
+    /* last column grounding cap */
+    for (int j = 0; j < Scale; ++ j) {
+        posNodeIndex = nodeIndex + j;
+        negNodeIndex = 0;
+        c = "C" + STR(cIndex++) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(CVAL);
         m_ss << c << "\n";
     }
 
-    r = "R" + STR(rIndex++) + " " + "9" + " " + "10" + " " + STR(RVAL);
-    m_ss << r << "\n";
-
-    int nodeCount = 2 * m_scale;
-    for (int i = 2; i <= maxH; ++ i) {
-        for (int j = 0; j < nodeCount; ++ j) {
-            posNodeIndex = nodeIndex + j;
-            negNodeIndex = nodeIndex + nodeCount + j;
-            r = "R" + STR(rIndex++) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
-            m_ss << r << "\n";
-            c = "C" + STR(cIndex++) + " " + STR(negNodeIndex) + " " + "0" + " " + STR(CVAL);
-            m_ss << c << "\n";
-        }
-
-        /* extra R link */
-        posNodeIndex = nodeIndex + m_scale - 1;
-        negNodeIndex = nodeIndex + m_scale;
-
-        r = "R" + STR(rIndex++) + " " + STR(posNodeIndex) + " " + STR(negNodeIndex) + " " + STR(RVAL);
-        m_ss << r << "\n";
-
-        nodeIndex += nodeCount;
+    if (Length != 0) {
+        m_outs.push_back(STR(nodeIndex));
+        m_outs.push_back(STR(nodeIndex + Scale - 1));
     }
+
+    m_ss << "\n";
 
     return OKAY;
 }
 
-int ClockTreeRCLink::GenerateCmd()
+int ClockTreeMesh::GenerateCmd()
 {
 #ifdef TRACE
     cout << TRACE_LINE << endl;
@@ -234,7 +214,7 @@ int ClockTreeRCLink::GenerateCmd()
     }
 
     m_ss << ".SAVE ";
-    for (size_t i = 0; i < m_outs.size(); ++ i) 
+    for (size_t i = 0; i < m_outs.size(); ++ i)
         m_ss << "V(" << m_outs.at(i) << ") ";
     m_ss << "\n";
 

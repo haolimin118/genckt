@@ -37,6 +37,7 @@
 
 /* For ClockTree circuit */
 const static int MAX_H_LENGTH = 100;
+const static int MAX_CTM_LENGTH = 10000;
 
 enum AnalysisType { OP = 0, DC, AC, TRAN };
 
@@ -57,15 +58,15 @@ const std::string V_AC_MAG2 = "2";
 
 /* For Tran */
 const std::string V_TRAN_SIN = "sin(0 1 100MEG)";
-const std::string V_TRAN_PULSE = "PULSE(0 1 50u 0 0 2m 3m)";
+const std::string V_TRAN_PULSE = "PULSE(0 1 50u 0 0 10m 3m)";
 const std::string TSTEP = "10u";
-const std::string TSTOP = "1m";
+const std::string TSTOP = "3m";
 const std::string TSTART = "0";
 
-// #define RVAL RandomDouble(0.1, 10)
-#define RVAL 100
-// #define CVAL RandomDouble(1e-14, 1e-12)
-#define CVAL 1e-12
+#define RVAL RandomDouble(0.1, 10)
+// #define RVAL 10
+#define CVAL RandomDouble(1e-14, 1e-12)
+// #define CVAL 1e-12
 #define LVAL RandomDouble(1e-4, 1e-2)
 // #define LVAL 1e-3
 
