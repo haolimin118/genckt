@@ -2,7 +2,9 @@
 Generate circuits for RCR and netlistviz
 
 ## Generated circuit list
-- [x] Ladder RC
-- [x] Ladder RLC
-- [ ] Clock RC
-- [ ] Clock RLC
+- [x] Ladder
+- [x] ClockTree
+- [x] CoupledTree
+- [x] Mesh
+- [x] Simple PowerGrid
+- [x] RLine
