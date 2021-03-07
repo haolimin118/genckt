@@ -11,13 +11,11 @@ using std::endl;
 MeshRC::MeshRC(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
 }
 
 MeshRC::~MeshRC()
 {
-    m_ss.clear();
 }
 
 int MeshRC::Generate(ofstream &fout)
@@ -44,8 +42,6 @@ int MeshRC::GenerateCkt()
 {
     string vsrc1 = "Vsrc 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG1;
     m_ss << vsrc1 << "\n";
-    // string vsrc2 = "V2 " + STR(m_scale+1) + " 0 " + V_DC + " " + "AC" + " " + V_AC_MAG1; 
-    // m_ss << vsrc2 << "\n";
 
     string r, c;
     int pos = 0, neg = 0;
@@ -109,7 +105,7 @@ int MeshRC::GenerateCmd()
                  << "V(" << m_outIndex[2] << ")" << "\n";
             break;
         case DC:
-            m_ss << ".DC" << " " << "VIN" << " " << V_START << " "
+            m_ss << ".DC" << " " << "Vsrc" << " " << V_START << " "
                  << V_STOP << " " << V_INCR << "\n";
             m_ss << ".SAVE V(" << m_outIndex[0] << ") "
                  << "V(" << m_outIndex[1] << ") "

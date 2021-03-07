@@ -61,6 +61,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = MESHR;
     } else if (flag_cktType.compare("meshrc") == 0) {
         cktType = MESHRC;
+    } else if (flag_cktType.compare("meshrlc") == 0) {
+        cktType = MESHRLC;
     } else if (flag_cktType.compare("rline") == 0) {
         cktType = RLINE;
     } else if (flag_cktType.compare("powergridr") == 0) {
@@ -117,6 +119,7 @@ static void InitProjectInfo()
                             "clocktreemesh\n"
                             "meshr\n"
                             "meshrc\n"
+                            "meshrlc\n"
                             "rline\n"
                             "powergridr");
 }

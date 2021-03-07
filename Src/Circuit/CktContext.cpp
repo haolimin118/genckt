@@ -47,6 +47,9 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
         case MESHRC:
             m_ckt = new MeshRC(scale, "Mesh RC");
             break;
+        case MESHRLC:
+            m_ckt = new MeshRLC(scale, "Mesh RLC");
+            break;
         case RLINE:
             m_ckt = new RLine(scale, "R Line");
             break;

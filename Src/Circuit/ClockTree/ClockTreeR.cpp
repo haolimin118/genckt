@@ -12,14 +12,12 @@ using std::endl;
 ClockTreeR::ClockTreeR(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
     m_outIndex = 0;
 }
 
 ClockTreeR::~ClockTreeR()
 {
-    m_ss.clear();
 }
 
 int ClockTreeR::Generate(ofstream &fout)

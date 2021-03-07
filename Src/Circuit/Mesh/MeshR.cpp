@@ -11,14 +11,12 @@ using std::endl;
 MeshR::MeshR(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
     m_outIndex = 0;
 }
 
 MeshR::~MeshR()
 {
-    m_ss.clear();
 }
 
 int MeshR::Generate(ofstream &fout)

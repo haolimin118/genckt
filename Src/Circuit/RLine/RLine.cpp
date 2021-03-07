@@ -11,14 +11,12 @@ using std::endl;
 RLine::RLine(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
     m_outIndex = 0;
 }
 
 RLine::~RLine()
 {
-    m_ss.clear();
 }
 
 int RLine::Generate(ofstream &fout)

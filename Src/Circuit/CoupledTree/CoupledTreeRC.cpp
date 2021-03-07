@@ -11,14 +11,12 @@ using std::endl;
 CoupledTreeRC::CoupledTreeRC(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
     m_outIndex = 0;
 }
 
 CoupledTreeRC::~CoupledTreeRC()
 {
-    m_ss.clear();
 }
 
 int CoupledTreeRC::Generate(ofstream &fout)

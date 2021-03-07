@@ -36,6 +36,7 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
        $(SRC_DIR)/Circuit/ClockTree/ClockTreeMesh.cpp \
 	   $(SRC_DIR)/Circuit/Mesh/MeshR.cpp \
 	   $(SRC_DIR)/Circuit/Mesh/MeshRC.cpp \
+	   $(SRC_DIR)/Circuit/Mesh/MeshRLC.cpp \
        $(SRC_DIR)/Circuit/RLine/RLine.cpp \
        $(SRC_DIR)/Circuit/PG/PGR.cpp \
        $(SRC_DIR)/Circuit/PG/PGRC.cpp
