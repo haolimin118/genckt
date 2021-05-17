@@ -41,10 +41,10 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = LADDERRC;
     } else if (flag_cktType.compare("ladderrlc") == 0) {
         cktType = LADDERRLC;
-    } else if (flag_cktType.compare("coupledtreerc") == 0) {
-        cktType = COUPLEDTREERC;
-    } else if (flag_cktType.compare("coupledtreemrc") == 0) {
-        cktType = COUPLEDTREEMRC;
+    } else if (flag_cktType.compare("coupledlinerc") == 0) {
+        cktType = COUPLEDLINERC;
+    } else if (flag_cktType.compare("coupledlinemrc") == 0) {
+        cktType = COUPLEDLINEMRC;
     } else if (flag_cktType.compare("clocktreer") == 0) {
         cktType = CLOCKTREER;
     } else if (flag_cktType.compare("clocktreerc") == 0) {
@@ -61,6 +61,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = MESHR;
     } else if (flag_cktType.compare("meshrc") == 0) {
         cktType = MESHRC;
+    } else if (flag_cktType.compare("meshrlc") == 0) {
+        cktType = MESHRLC;
     } else if (flag_cktType.compare("rline") == 0) {
         cktType = RLINE;
     } else if (flag_cktType.compare("powergridr") == 0) {
@@ -107,8 +109,8 @@ static void InitProjectInfo()
                             "Circuit Types:\n"
                             "ladderrc\n"
                             "ladderrlc\n"
-                            "coupledtreerc\n"
-                            "coupledtreemrc\n"
+                            "coupledlinerc\n"
+                            "coupledlinemrc\n"
                             "clocktreer\n"
                             "clocktreerc\n"
                             "clocktreerrand\n"
@@ -117,6 +119,7 @@ static void InitProjectInfo()
                             "clocktreemesh\n"
                             "meshr\n"
                             "meshrc\n"
+                            "meshrlc\n"
                             "rline\n"
                             "powergridr");
 }

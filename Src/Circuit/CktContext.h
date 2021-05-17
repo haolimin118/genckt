@@ -15,12 +15,12 @@
 class CktBase;
 
 enum CktType { LADDERRC = 0, LADDERRLC,
-               COUPLEDTREERC, COUPLEDTREEMRC, /* COUPLEDTREERLC */
+               COUPLEDLINERC, COUPLEDLINEMRC, /* COUPLED LINE  */
                CLOCKTREER, CLOCKTREERC,
                CLOCKTREERRAND, CLOCKTREERCRAND,
                CLOCKTREERCLINK,
                CLOCKTREEMESH,
-               MESHR, MESHRC, 
+               MESHR, MESHRC, MESHRLC, 
                RLINE,
                POWERGRIDR };
 

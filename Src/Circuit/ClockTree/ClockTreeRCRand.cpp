@@ -15,14 +15,12 @@ using std::vector;
 ClockTreeRCRand::ClockTreeRCRand(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
     m_outIndex = 0;
 }
 
 ClockTreeRCRand::~ClockTreeRCRand()
 {
-    m_ss.clear();
 }
 
 int ClockTreeRCRand::Generate(ofstream &fout)

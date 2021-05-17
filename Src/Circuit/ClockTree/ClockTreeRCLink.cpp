@@ -12,13 +12,11 @@ using std::endl;
 ClockTreeRCLink::ClockTreeRCLink(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
 }
 
 ClockTreeRCLink::~ClockTreeRCLink()
 {
-    m_ss.clear();
     m_ss.str("");
 }
 

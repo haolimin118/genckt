@@ -12,13 +12,11 @@ using std::endl;
 PGR::PGR(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
 }
 
 PGR::~PGR()
 {
-    m_ss.clear();
 }
 
 int PGR::Generate(ofstream &fout)

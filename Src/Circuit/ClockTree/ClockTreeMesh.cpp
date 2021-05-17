@@ -12,13 +12,11 @@ using std::endl;
 ClockTreeMesh::ClockTreeMesh(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
 }
 
 ClockTreeMesh::~ClockTreeMesh()
 {
-    m_ss.clear();
     m_ss.str("");
 }
 

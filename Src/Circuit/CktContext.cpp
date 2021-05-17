@@ -17,11 +17,11 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
         case LADDERRLC:
             m_ckt = new LadderRLC(scale, "RLC ladder");
             break;
-        case COUPLEDTREERC:
-            m_ckt = new CoupledTreeRC(scale, "Coupled RC tree");
+        case COUPLEDLINERC:
+            m_ckt = new CoupledLineRC(scale, "Coupled RC line");
             break;
-        case COUPLEDTREEMRC:
-            m_ckt = new CoupledTreeMRC(scale, "Coupled MRC tree");
+        case COUPLEDLINEMRC:
+            m_ckt = new CoupledLineMRC(scale, "Coupled MRC line");
             break;
         case CLOCKTREER:
             m_ckt = new ClockTreeR(scale, "Clock R tree");
@@ -46,6 +46,9 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
             break;
         case MESHRC:
             m_ckt = new MeshRC(scale, "Mesh RC");
+            break;
+        case MESHRLC:
+            m_ckt = new MeshRLC(scale, "Mesh RLC");
             break;
         case RLINE:
             m_ckt = new RLine(scale, "R Line");

@@ -11,14 +11,12 @@ using std::endl;
 LadderRC::LadderRC(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
-    m_ss.clear();
     m_ss.str("");
     m_outIndex = 0;
 }
 
 LadderRC::~LadderRC()
 {
-    m_ss.clear();
 }
 
 int LadderRC::Generate(ofstream &fout)

@@ -63,12 +63,12 @@ const std::string TSTEP = "10u";
 const std::string TSTOP = "3m";
 const std::string TSTART = "0";
 
-#define RVAL RandomDouble(0.1, 10)
-// #define RVAL 10
-#define CVAL RandomDouble(1e-14, 1e-12)
-// #define CVAL 1e-12
-#define LVAL RandomDouble(1e-4, 1e-2)
-// #define LVAL 1e-3
+// #define RVAL RandomDouble(0.1, 10)
+#define RVAL 100
+// #define CVAL RandomDouble(1e-14, 1e-12)
+#define CVAL 1e-12
+// #define LVAL RandomDouble(1e-4, 1e-2)
+#define LVAL 1e-3
 
 const static int L_GAP = 5;
 const static int COUPLED_NUM = 20;
