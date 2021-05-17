@@ -10,7 +10,7 @@ INC_PATH = -I$(SRC_DIR) \
 		   -I$(SRC_DIR)/Circuit \
 		   -I$(SRC_DIR)/Circuit/Ladder \
 		   -I$(SRC_DIR)/Circuit/ClockTree \
-		   -I$(SRC_DIR)/Circuit/CoupledTree \
+		   -I$(SRC_DIR)/Circuit/CoupledLines \
 		   -I$(SRC_DIR)/Circuit/Mesh \
            -I$(SRC_DIR)/Circuit/RLine \
            -I$(SRC_DIR)/Circuit/PG
@@ -26,8 +26,8 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/CktContext.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRC.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRLC.cpp \
-	   $(SRC_DIR)/Circuit/CoupledTree/CoupledTreeRC.cpp \
-	   $(SRC_DIR)/Circuit/CoupledTree/CoupledTreeMRC.cpp \
+	   $(SRC_DIR)/Circuit/CoupledLines/CoupledLineRC.cpp \
+	   $(SRC_DIR)/Circuit/CoupledLines/CoupledLineMRC.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeR.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRC.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRRand.cpp \

@@ -3,8 +3,8 @@
 
 #include "Circuit/Ladder/LadderRC.h"
 #include "Circuit/Ladder/LadderRLC.h"
-#include "Circuit/CoupledTree/CoupledTreeRC.h"
-#include "Circuit/CoupledTree/CoupledTreeMRC.h"
+#include "Circuit/CoupledLines/CoupledLineRC.h"
+#include "Circuit/CoupledLines/CoupledLineMRC.h"
 #include "Circuit/ClockTree/ClockTreeR.h"
 #include "Circuit/ClockTree/ClockTreeRC.h"
 #include "Circuit/ClockTree/ClockTreeRRand.h"

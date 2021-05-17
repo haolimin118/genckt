@@ -1,4 +1,4 @@
-#include "CoupledTreeMRC.h"
+#include "CoupledLineMRC.h"
 #include <iostream>
 #include "Utilities/MyString.h"
 #include "Utilities/Utils.h"
@@ -8,18 +8,18 @@ using std::ofstream;
 using std::cout;
 using std::endl;
 
-CoupledTreeMRC::CoupledTreeMRC(int scale, const string &typeName)
+CoupledLineMRC::CoupledLineMRC(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
     m_ss.str("");
     m_outNode = "0";
 }
 
-CoupledTreeMRC::~CoupledTreeMRC()
+CoupledLineMRC::~CoupledLineMRC()
 {
 }
 
-int CoupledTreeMRC::Generate(ofstream &fout)
+int CoupledLineMRC::Generate(ofstream &fout)
 {
 #ifdef TRACE
     cout << TRACE_LINE << endl;
@@ -39,7 +39,7 @@ int CoupledTreeMRC::Generate(ofstream &fout)
     return OKAY;
 }
 
-int CoupledTreeMRC::GenerateCkt()
+int CoupledLineMRC::GenerateCkt()
 {
     string vsrc = "";
     string vname = "";
@@ -90,7 +90,7 @@ int CoupledTreeMRC::GenerateCkt()
 
 }
 
-int CoupledTreeMRC::GenerateCmd()
+int CoupledLineMRC::GenerateCmd()
 {
     switch (m_anaType) {
         case OP:

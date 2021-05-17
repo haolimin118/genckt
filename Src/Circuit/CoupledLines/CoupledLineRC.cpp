@@ -1,4 +1,4 @@
-#include "CoupledTreeRC.h"
+#include "CoupledLineRC.h"
 #include <iostream>
 #include "Utilities/MyString.h"
 #include "Utilities/Utils.h"
@@ -8,18 +8,18 @@ using std::ofstream;
 using std::cout;
 using std::endl;
 
-CoupledTreeRC::CoupledTreeRC(int scale, const string &typeName)
+CoupledLineRC::CoupledLineRC(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
     m_ss.str("");
     m_outIndex = 0;
 }
 
-CoupledTreeRC::~CoupledTreeRC()
+CoupledLineRC::~CoupledLineRC()
 {
 }
 
-int CoupledTreeRC::Generate(ofstream &fout)
+int CoupledLineRC::Generate(ofstream &fout)
 {
 #ifdef TRACE
     cout << TRACE_LINE << endl;
@@ -39,7 +39,7 @@ int CoupledTreeRC::Generate(ofstream &fout)
     return OKAY;
 }
 
-int CoupledTreeRC::GenerateCkt()
+int CoupledLineRC::GenerateCkt()
 {
     string vsrc0 = "VIN0 10 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
     string vsrc1 = "VIN1 11 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
@@ -78,7 +78,7 @@ int CoupledTreeRC::GenerateCkt()
 
 }
 
-int CoupledTreeRC::GenerateCmd()
+int CoupledLineRC::GenerateCmd()
 {
     string out0 = STR(m_outIndex) + "0";
     string out1 = STR(m_outIndex) + "1";

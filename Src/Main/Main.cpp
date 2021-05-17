@@ -41,10 +41,10 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = LADDERRC;
     } else if (flag_cktType.compare("ladderrlc") == 0) {
         cktType = LADDERRLC;
-    } else if (flag_cktType.compare("coupledtreerc") == 0) {
-        cktType = COUPLEDTREERC;
-    } else if (flag_cktType.compare("coupledtreemrc") == 0) {
-        cktType = COUPLEDTREEMRC;
+    } else if (flag_cktType.compare("coupledlinerc") == 0) {
+        cktType = COUPLEDLINERC;
+    } else if (flag_cktType.compare("coupledlinemrc") == 0) {
+        cktType = COUPLEDLINEMRC;
     } else if (flag_cktType.compare("clocktreer") == 0) {
         cktType = CLOCKTREER;
     } else if (flag_cktType.compare("clocktreerc") == 0) {
@@ -109,8 +109,8 @@ static void InitProjectInfo()
                             "Circuit Types:\n"
                             "ladderrc\n"
                             "ladderrlc\n"
-                            "coupledtreerc\n"
-                            "coupledtreemrc\n"
+                            "coupledlinerc\n"
+                            "coupledlinemrc\n"
                             "clocktreer\n"
                             "clocktreerc\n"
                             "clocktreerrand\n"
