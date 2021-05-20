@@ -16,7 +16,7 @@
 
 #ifndef TRACE_LINE
 #define TRACE_LINE "\n[" << __FILE__ << " : line " << __LINE__ << " : " << __FUNCTION__ << "()]"
-#endif 
+#endif
 
 #ifndef UNUSED
 #define UNUSED(x) (void*)(x)
@@ -42,33 +42,37 @@ const static int MAX_CTM_LENGTH = 10000;
 enum AnalysisType { OP = 0, DC, AC, TRAN };
 
 /* For DC */
-const std::string V_DC = "10";
+const std::string V_DC = "1";
 const std::string V_START = "0";
-const std::string V_STOP = "10";
-const std::string V_INCR = "1";
+const std::string V_STOP = "1";
+const std::string V_INCR = "0.1";
 
 /* For AC */
 const std::string STEP_TYPE = "DEC";
 const std::string NUM_STEPS = "10";
 const std::string FSTART = "1";
 const std::string FSTOP  = "1G";
+const std::string V_AC_PHASE = "0";
 const std::string V_AC_MAG = "1";
 const std::string V_AC_MAG1 = "1";
 const std::string V_AC_MAG2 = "2";
 
 /* For Tran */
 const std::string V_TRAN_SIN = "sin(0 1 100MEG)";
-const std::string V_TRAN_PULSE = "PULSE(0 1 50u 0 0 10m 3m)";
-const std::string TSTEP = "10u";
-const std::string TSTOP = "3m";
+const std::string V_TRAN_PULSE = "PULSE(0 1 100n 1f 1f 1m 3m)";
+const std::string TSTEP = "1n";
+const std::string TSTOP = "1u";
 const std::string TSTART = "0";
 
-// #define RVAL RandomDouble(0.1, 10)
-#define RVAL 100
-// #define CVAL RandomDouble(1e-14, 1e-12)
-#define CVAL 1e-12
-// #define LVAL RandomDouble(1e-4, 1e-2)
-#define LVAL 1e-3
+#define RVAL RandomDouble(0.1, 10)
+// #define RVAL 10
+#define CVAL RandomDouble(1e-13, 1e-12)
+// #define CVAL 1e-12
+#define LVAL RandomDouble(1e-10, 1e-9)
+// #define LVAL  1e-9
+#define RLOAD 5000
+#define CLOAD 2e-12
+#define RV    50
 
 const static int L_GAP = 5;
 const static int COUPLED_NUM = 20;
