@@ -43,6 +43,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = LADDERRLC;
     } else if (flag_cktType.compare("coupledlinerc") == 0) {
         cktType = COUPLEDLINERC;
+    } else if (flag_cktType.compare("coupledlinerlc") == 0) {
+        cktType = COUPLEDLINERLC;
     } else if (flag_cktType.compare("coupledlinemrc") == 0) {
         cktType = COUPLEDLINEMRC;
     } else if (flag_cktType.compare("clocktreer") == 0) {
@@ -110,6 +112,7 @@ static void InitProjectInfo()
                             "ladderrc\n"
                             "ladderrlc\n"
                             "coupledlinerc\n"
+                            "coupledlinerlc\n"
                             "coupledlinemrc\n"
                             "clocktreer\n"
                             "clocktreerc\n"

@@ -23,6 +23,9 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
         case COUPLEDLINEMRC:
             m_ckt = new CoupledLineMRC(scale, "Coupled MRC line");
             break;
+        case COUPLEDLINERLC:
+            m_ckt = new CoupledLineRLC(scale, "Coupled RLC line");
+            break;
         case CLOCKTREER:
             m_ckt = new ClockTreeR(scale, "Clock R tree");
             break;

@@ -27,6 +27,7 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRC.cpp \
 	   $(SRC_DIR)/Circuit/Ladder/LadderRLC.cpp \
 	   $(SRC_DIR)/Circuit/CoupledLines/CoupledLineRC.cpp \
+	   $(SRC_DIR)/Circuit/CoupledLines/CoupledLineRLC.cpp \
 	   $(SRC_DIR)/Circuit/CoupledLines/CoupledLineMRC.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeR.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRC.cpp \
@@ -48,7 +49,7 @@ DEPS = $(addprefix $(OBJ_DIR)/, $(subst .cpp,.d, $(SRCS)))
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
-	CXX = clang++
+	CXX = g++
 endif
 ifeq ($(UNAME), Linux)
 	CXX = g++

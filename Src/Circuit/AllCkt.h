@@ -5,6 +5,7 @@
 #include "Circuit/Ladder/LadderRLC.h"
 #include "Circuit/CoupledLines/CoupledLineRC.h"
 #include "Circuit/CoupledLines/CoupledLineMRC.h"
+#include "Circuit/CoupledLines/CoupledLineRLC.h"
 #include "Circuit/ClockTree/ClockTreeR.h"
 #include "Circuit/ClockTree/ClockTreeRC.h"
 #include "Circuit/ClockTree/ClockTreeRRand.h"
