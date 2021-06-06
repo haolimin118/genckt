@@ -51,6 +51,8 @@ static void ParseCommandLineArgs(int argc, char **argv)
         cktType = CLOCKTREER;
     } else if (flag_cktType.compare("clocktreerc") == 0) {
         cktType = CLOCKTREERC;
+    } else if (flag_cktType.compare("clocktreerlc") == 0) {
+        cktType = CLOCKTREERLC;
     } else if (flag_cktType.compare("clocktreerrand") == 0) {
         cktType = CLOCKTREERRAND;
     } else if (flag_cktType.compare("clocktreercrand") == 0) {
@@ -116,6 +118,7 @@ static void InitProjectInfo()
                             "coupledlinemrc\n"
                             "clocktreer\n"
                             "clocktreerc\n"
+                            "clocktreerlc\n"
                             "clocktreerrand\n"
                             "clocktreercrand\n"
                             "clocktreerclink\n"

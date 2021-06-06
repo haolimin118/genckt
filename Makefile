@@ -31,6 +31,7 @@ SRCS = $(SRC_DIR)/Main/Main.cpp \
 	   $(SRC_DIR)/Circuit/CoupledLines/CoupledLineMRC.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeR.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRC.cpp \
+	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRLC.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRRand.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRCRand.cpp \
 	   $(SRC_DIR)/Circuit/ClockTree/ClockTreeRCLink.cpp \
