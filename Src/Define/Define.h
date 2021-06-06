@@ -59,20 +59,21 @@ const std::string V_AC_MAG2 = "2";
 
 /* For Tran */
 const std::string V_TRAN_SIN = "sin(0 1 100MEG)";
-const std::string V_TRAN_PULSE = "PULSE(0 1 100n 1f 1f 1m 3m)";
+const std::string V_TRAN_PULSE = "PULSE(0 1 100n 1f 1f 0.5u 2u)";
 const std::string TSTEP = "1n";
-const std::string TSTOP = "1u";
+const std::string TSTOP = "4u";
 const std::string TSTART = "0";
 
 #define RVAL RandomDouble(0.1, 10)
 // #define RVAL 10
 #define CVAL RandomDouble(1e-13, 1e-12)
 // #define CVAL 1e-12
-#define LVAL RandomDouble(1e-10, 1e-9)
-// #define LVAL  1e-9
-#define RLOAD 5000
+// #define LVAL RandomDouble(1e-10, 1e-8)
+#define LVAL  1e-8
+#define RLOAD 1000
 #define CLOAD 2e-12
 #define RV    50
+#define CV    2e-12
 
 const static int L_GAP = 5;
 const static int COUPLED_NUM = 20;

@@ -12,6 +12,7 @@
 #include "Circuit/ClockTree/ClockTreeRCRand.h"
 #include "Circuit/ClockTree/ClockTreeRCLink.h"
 #include "Circuit/ClockTree/ClockTreeMesh.h"
+#include "Circuit/ClockTree/ClockTreeRLC.h"
 #include "Circuit/Mesh/MeshR.h"
 #include "Circuit/Mesh/MeshRC.h"
 #include "Circuit/Mesh/MeshRLC.h"

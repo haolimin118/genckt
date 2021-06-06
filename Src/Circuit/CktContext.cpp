@@ -32,6 +32,9 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
         case CLOCKTREERC:
             m_ckt = new ClockTreeRC(scale, "Clock RC tree");
             break;
+        case CLOCKTREERLC:
+            m_ckt = new ClockTreeRLC(scale, "Clock RLC tree");
+            break;
         case CLOCKTREERRAND:
             m_ckt = new ClockTreeRRand(scale, "Clock R tree (random fanout)");
             break;
