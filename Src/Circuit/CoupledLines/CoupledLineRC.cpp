@@ -12,7 +12,6 @@ CoupledLineRC::CoupledLineRC(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
     m_ss.str("");
-    m_outIndex = 0;
 }
 
 CoupledLineRC::~CoupledLineRC()
@@ -41,8 +40,9 @@ int CoupledLineRC::Generate(ofstream &fout)
 
 int CoupledLineRC::GenerateCkt()
 {
-    string vsrc0 = "VIN0 10 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
-    string vsrc1 = "VIN1 11 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
+    string vsrc0 = "VIN0 10 0 " + V_DC + " " + "AC" + " " + V_AC_MAG + " " + V_AC_PHASE + " " + V_TRAN_PULSE;
+    // string vsrc1 = "VIN1 11 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
+    string vsrc1 = "VIN1 11 0 0 AC 0 0";
 
     m_ss << vsrc0 << "\n";
     m_ss << vsrc1 << "\n";
@@ -72,35 +72,36 @@ int CoupledLineRC::GenerateCkt()
 
     m_ss << "\n";
 
-    m_outIndex = m_scale + 1;
+    m_outs.push_back(STR(m_scale+1)+"0");
+    m_outs.push_back(STR(m_scale+1)+"1");
 
     return OKAY;
-
 }
 
 int CoupledLineRC::GenerateCmd()
 {
-    string out0 = STR(m_outIndex) + "0";
-    string out1 = STR(m_outIndex) + "1";
+    string out0 = m_outs.at(0);
+    string out1 = m_outs.at(1);
 
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".SAVE V(" << out0 << ")" << "\n";
             break;
         case DC:
             m_ss << ".DC" << " " << "VIN0" << " " << V_START << " "
                  << V_STOP << " " << V_INCR << "\n";
-            m_ss << ".SAVE V(" << out0 << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
                  << FSTART << " " << FSTOP << "\n";
-            m_ss << ".SAVE V(" << out0 << ")"<< "\n";
             break;
         case TRAN:
+            m_ss << ".tran" << " " << TSTEP << " " << TSTOP << "\n";
             break;
     }
+
+    m_ss << ".SAVE V(" << out0 << ") "
+         << "V(" << out1 << ")" << endl;
 
     m_ss << ".end" << "\n";
     return OKAY;
