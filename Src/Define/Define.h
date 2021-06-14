@@ -61,13 +61,13 @@ const std::string V_AC_MAG2 = "2";
 const std::string V_TRAN_SIN = "sin(0 1 100MEG)";
 const std::string V_TRAN_PULSE = "PULSE(0 1 100n 0 0 10u 20u)";
 const std::string TSTEP = "1n";
-const std::string TSTOP = "1u";
+const std::string TSTOP = "5u";
 const std::string TSTART = "0";
 
-// #define RVAL RandomDouble(0.1, 10)
-#define RVAL 10
-// #define CVAL RandomDouble(1e-13, 1e-12)
-#define CVAL 1e-12
+#define RVAL RandomDouble(0.1, 10)
+// #define RVAL 10
+#define CVAL RandomDouble(1e-13, 1e-12)
+// #define CVAL 1e-12
 // #define LVAL RandomDouble(1e-10, 1e-8)
 #define LVAL  1e-8
 #define RLOAD 1000
@@ -75,8 +75,8 @@ const std::string TSTART = "0";
 #define RV    50
 #define CV    2e-12
 
-const static int L_GAP = 5;
-const static int COUPLED_NUM = 20;
+const static int L_GAP = 10;
+const static int COUPLED_NUM = 50;
 
 /* for powergrid */
 const static int PG_NUM_PER_SCALE = 100;

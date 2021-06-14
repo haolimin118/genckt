@@ -41,7 +41,6 @@ int CoupledLineRC::Generate(ofstream &fout)
 int CoupledLineRC::GenerateCkt()
 {
     string vsrc0 = "VIN0 10 0 " + V_DC + " " + "AC" + " " + V_AC_MAG + " " + V_AC_PHASE + " " + V_TRAN_PULSE;
-    // string vsrc1 = "VIN1 11 0 " + V_DC + " " + "AC" + " " + V_AC_MAG;
     string vsrc1 = "VIN1 11 0 0 AC 0 0";
 
     m_ss << vsrc0 << "\n";

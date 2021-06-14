@@ -20,7 +20,7 @@ enum CktType { LADDERRC = 0, LADDERRLC,
                CLOCKTREERRAND, CLOCKTREERCRAND,
                CLOCKTREERCLINK,
                CLOCKTREEMESH,
-               MESHR, MESHRC, MESHRLC, 
+               MESHR, MESHRC, MESHRLC, MESHRC4DELAY,
                RLINE,
                POWERGRIDR };
 
