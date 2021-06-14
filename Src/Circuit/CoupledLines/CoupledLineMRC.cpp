@@ -12,7 +12,6 @@ CoupledLineMRC::CoupledLineMRC(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
     m_ss.str("");
-    m_outNode = "0";
 }
 
 CoupledLineMRC::~CoupledLineMRC()
@@ -45,10 +44,11 @@ int CoupledLineMRC::GenerateCkt()
     string vname = "";
     string pos = "", neg = "";
     for (int i = 1; i <= COUPLED_NUM; ++ i) {
-        vname = "VIN" + string("_") + STR(i);
+        vname = "vin" + string("_") + STR(i);
         pos = "n_1_" + STR(i);
         neg = "0";
-        vsrc = vname + " " + pos + " " + neg + " " + V_DC + " " + "AC" + " " + V_AC_MAG;
+        vsrc = vname + " " + pos + " " + neg + " " + V_DC + " " + "AC" + " " +
+               V_AC_MAG + " " + V_AC_PHASE + " " + V_TRAN_PULSE;
         m_ss << vsrc << "\n";
     }
 
@@ -62,7 +62,12 @@ int CoupledLineMRC::GenerateCkt()
             rname = "R" + STR(i) + "_" + STR(j);
             cname = "C" + STR(i) + "_" + STR(j);
             r = rname + " " + pos + " " + neg + " " + STR(RVAL);
-            c = cname + " " + neg + " " + "0" + " " + STR(CVAL);
+
+			if (i == m_scale)
+				c = cname + " " + neg + " " + "0" + " " + STR(CLOAD);
+			else
+				c = cname + " " + neg + " " + "0" + " " + STR(CVAL);
+
             m_ss << r << "\n";
             m_ss << c << "\n";
         }
@@ -84,7 +89,18 @@ int CoupledLineMRC::GenerateCkt()
 
     m_ss << "\n";
 
-    m_outNode = "n_" + STR(m_scale+1) + "_" + "1";
+    // vsrc pos node
+    string savenode("");
+    for (int i = 1; i <= COUPLED_NUM; ++ i) {
+        savenode = "n_1_" + STR(i);
+        m_outs.push_back(savenode); 
+    }
+
+    // the last column nodes
+    for (int i = 1; i <= COUPLED_NUM; ++ i) {
+        savenode = "n_" + STR(m_scale+1) + "_" + STR(i);
+        m_outs.push_back(savenode);
+    }
 
     return OKAY;
 
@@ -95,21 +111,24 @@ int CoupledLineMRC::GenerateCmd()
     switch (m_anaType) {
         case OP:
             m_ss << ".OP" << "\n";
-            m_ss << ".SAVE V(" << m_outNode << ")" << "\n";
             break;
         case DC:
-            m_ss << ".DC" << " " << "VIN0" << " " << V_START << " "
+            m_ss << ".DC" << " " << "vin_1" << " " << V_START << " "
                  << V_STOP << " " << V_INCR << "\n";
-            m_ss << ".SAVE V(" << m_outNode << ")" << "\n";
             break;
         case AC:
             m_ss << ".AC" << " " << STEP_TYPE << " " << NUM_STEPS << " "
                  << FSTART << " " << FSTOP << "\n";
-            m_ss << ".SAVE V(" << m_outNode << ")"<< "\n";
             break;
         case TRAN:
+            m_ss << ".tran" << " " << TSTEP << " " << TSTOP << "\n";
             break;
     }
+
+    m_ss << ".save ";
+    for (size_t i = 0; i < m_outs.size(); ++ i)
+        m_ss << "v(" << m_outs.at(i) << ") ";
+    m_ss << "\n";
 
     m_ss << ".end" << "\n";
     return OKAY;

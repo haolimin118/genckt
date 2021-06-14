@@ -53,6 +53,9 @@ CktContext::CktContext(CktType type, int scale, AnalysisType anaType)
         case MESHRC:
             m_ckt = new MeshRC(scale, "Mesh RC");
             break;
+        case MESHRC4DELAY:
+			m_ckt = new MeshRC4Delay(scale, "Mesh RC for measuring delay");
+			break;
         case MESHRLC:
             m_ckt = new MeshRLC(scale, "Mesh RLC");
             break;

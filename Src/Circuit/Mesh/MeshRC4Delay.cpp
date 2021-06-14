@@ -1,4 +1,4 @@
-#include "MeshRC.h"
+#include "MeshRC4Delay.h"
 #include <iostream>
 #include "Utilities/MyString.h"
 #include "Utilities/Utils.h"
@@ -8,17 +8,17 @@ using std::ofstream;
 using std::cout;
 using std::endl;
 
-MeshRC::MeshRC(int scale, const string &typeName)
+MeshRC4Delay::MeshRC4Delay(int scale, const string &typeName)
     : CktBase(scale, typeName)
 {
     m_ss.str("");
 }
 
-MeshRC::~MeshRC()
+MeshRC4Delay::~MeshRC4Delay()
 {
 }
 
-int MeshRC::Generate(ofstream &fout)
+int MeshRC4Delay::Generate(ofstream &fout)
 {
 #ifdef TRACE
     cout << LINE_INFO << endl;
@@ -38,11 +38,8 @@ int MeshRC::Generate(ofstream &fout)
     return OKAY;
 }
 
-int MeshRC::GenerateCkt()
+int MeshRC4Delay::GenerateCkt()
 {
-    string vsrc1 = "Vsrc 1 0 " + V_DC + " " + "AC" + " " + V_AC_MAG1;
-    m_ss << vsrc1 << "\n";
-
     string r, c;
     int pos = 0, neg = 0;
     int base = 1;
@@ -77,21 +74,27 @@ int MeshRC::GenerateCkt()
         }
     }
 
-    pos = (m_scale + 1) * (m_scale + 1);
-    neg = 0;
-    r = "Rout " + STR(pos) + " " + STR(neg) + " " + "10k";
-    m_ss << r << "\n";
+    string rout;
+    rout = "R" + STR(rIndex++) + " " + STR(1) + " " + STR(0) + " " + "10K";
+    m_ss << rout << "\n";
+    m_outIndex.push_back(1);
 
-    m_ss << "\n";
-
-    m_outIndex.push_back((m_scale+1)*(m_scale+1));
-    m_outIndex.push_back((m_scale+1)*m_scale+1);
+    rout = "R" + STR(rIndex++) + " " + STR(m_scale+1) + " " + STR(0) + " " + "10K";
+    m_ss << rout << "\n";
     m_outIndex.push_back(m_scale+1);
+
+    rout = "R" + STR(rIndex++) + " " + STR(m_scale*(m_scale+1)+1) + " " + STR(0) + " " + "10K";
+    m_ss << rout << "\n";
+    m_outIndex.push_back(m_scale*(m_scale+1)+1);
+
+    rout = "R" + STR(rIndex) + " " + STR((m_scale+1)*(m_scale+1)) + " " + STR(0) + " " + "10K";
+    m_ss << rout << "\n";
+    m_outIndex.push_back((m_scale+1)*(m_scale+1));
 
     return OKAY;
 }
 
-int MeshRC::GenerateCmd()
+int MeshRC4Delay::GenerateCmd()
 {
 #ifdef TRACE
     cout << TRACE_LINE << endl;
@@ -115,8 +118,9 @@ int MeshRC::GenerateCmd()
     }
 
     m_ss << ".save ";
-    for (size_t i = 0; i < m_outIndex.size(); ++ i)
+    for (size_t i = 0; i < m_outIndex.size(); ++ i) {
         m_ss << "v(" << m_outIndex.at(i) << ") ";
+    }
     m_ss << "\n";
 
     m_ss << ".end" << "\n";

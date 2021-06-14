@@ -11,6 +11,7 @@
 
 #include "Circuit/CktBase.h"
 #include <sstream>
+#include <vector>
 
 class CoupledLineMRC : public CktBase
 {
@@ -27,8 +28,8 @@ private:
     int GenerateCkt() override;
     int GenerateCmd() override;
 
-    std::stringstream m_ss;
-    std::string       m_outNode;
+    std::stringstream        m_ss;
+    std::vector<std::string> m_outs;
 };
 
 #endif // GNECKT_CIRCUIT_COUPLEDLINES_COUPLEDLINEMRC_H
