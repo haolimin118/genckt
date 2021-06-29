@@ -64,19 +64,19 @@ const std::string TSTEP = "1n";
 const std::string TSTOP = "5u";
 const std::string TSTART = "0";
 
-#define RVAL RandomDouble(0.1, 10)
+#define RVAL RandomDouble(1, 19)
 // #define RVAL 10
-#define CVAL RandomDouble(1e-13, 1e-12)
-// #define CVAL 1e-12
+// #define CVAL RandomDouble(1e-12, 1e-11)
+#define CVAL 1e-12
 // #define LVAL RandomDouble(1e-10, 1e-8)
 #define LVAL  1e-8
-#define RLOAD 1000
+#define RLOAD 100
 #define CLOAD 2e-12
 #define RV    50
 #define CV    2e-12
 
 const static int L_GAP = 10;
-const static int COUPLED_NUM = 50;
+const static int COUPLED_NUM = 5;
 
 /* for powergrid */
 const static int PG_NUM_PER_SCALE = 100;

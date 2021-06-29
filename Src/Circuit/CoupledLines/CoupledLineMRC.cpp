@@ -76,14 +76,12 @@ int CoupledLineMRC::GenerateCkt()
     /* Couple C */
     string cc, ccname;
     for (int i = 1; i <= m_scale; ++ i) {
-        for (int j = 1; j <= COUPLED_NUM; ++ j) {
-            pos = "n_" + STR(i+1) + "_" + STR(j);
-            for ( int k = j+1; k <= COUPLED_NUM; ++ k) {
-                neg = "n_" + STR(i+1) + "_" + STR(k);
-                ccname = "CC" + STR(i) + "_" + STR(j) + "_" + STR(k);
-                cc = ccname + " " + pos + " " + neg + " " + STR(CVAL);
-                m_ss << cc << "\n";
-            }
+        for (int j = 1; j < COUPLED_NUM; ++ j) {
+			pos = "n_" + STR(i+1) + "_" + STR(j);
+			neg = "n_" + STR(i+1) + "_" + STR(j+1);
+			ccname = "CC" + STR(i) + "_" + STR(j);
+			cc = ccname + " " + pos + " " + neg + " " + STR(CVAL);
+			m_ss << cc << "\n";
         }
     }
 

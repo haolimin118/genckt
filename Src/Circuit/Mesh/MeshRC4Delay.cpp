@@ -75,19 +75,19 @@ int MeshRC4Delay::GenerateCkt()
     }
 
     string rout;
-    rout = "R" + STR(rIndex++) + " " + STR(1) + " " + STR(0) + " " + "10K";
+    rout = "R" + STR(rIndex++) + " " + STR(1) + " " + STR(0) + " " + STR(RLOAD);
     m_ss << rout << "\n";
     m_outIndex.push_back(1);
 
-    rout = "R" + STR(rIndex++) + " " + STR(m_scale+1) + " " + STR(0) + " " + "10K";
+    rout = "R" + STR(rIndex++) + " " + STR(m_scale+1) + " " + STR(0) + " " + STR(RLOAD);
     m_ss << rout << "\n";
     m_outIndex.push_back(m_scale+1);
 
-    rout = "R" + STR(rIndex++) + " " + STR(m_scale*(m_scale+1)+1) + " " + STR(0) + " " + "10K";
+    rout = "R" + STR(rIndex++) + " " + STR(m_scale*(m_scale+1)+1) + " " + STR(0) + " " + STR(RLOAD);
     m_ss << rout << "\n";
     m_outIndex.push_back(m_scale*(m_scale+1)+1);
 
-    rout = "R" + STR(rIndex) + " " + STR((m_scale+1)*(m_scale+1)) + " " + STR(0) + " " + "10K";
+    rout = "R" + STR(rIndex) + " " + STR((m_scale+1)*(m_scale+1)) + " " + STR(0) + " " + STR(RLOAD);
     m_ss << rout << "\n";
     m_outIndex.push_back((m_scale+1)*(m_scale+1));
 
